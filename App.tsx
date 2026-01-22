@@ -277,7 +277,7 @@ const App: React.FC = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 grow overflow-y-auto pr-1 custom-scrollbar">
             {currentQuestion.options.map((opt, i) => {
-              let buttonStyle = "p-4 rounded-2xl border-2 font-bold text-base transition-all duration-200 flex items-center justify-center text-center min-h-[4rem] ";
+              let buttonStyle = "p-4 rounded-2xl border-2 font-bold text-lg transition-all duration-200 flex items-center justify-center text-center min-h-[4rem] ";
               if (!isAnswered) buttonStyle += "bg-white border-slate-50 hover:border-indigo-500 hover:bg-indigo-50 text-slate-700 cursor-pointer shadow-sm active:translate-y-0.5";
               else {
                 if (opt === currentQuestion.correctAnswer) buttonStyle += "bg-emerald-500 border-emerald-300 text-white shadow-lg scale-102 z-10";
