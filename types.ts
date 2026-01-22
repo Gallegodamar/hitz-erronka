@@ -1,16 +1,15 @@
 
 export interface WordData {
-  id: string;
+  id: string | number;
   hitza: string;
   sinonimoak: string[];
-  isClass?: boolean;
 }
 
 export interface Player {
   id: number;
   name: string;
   score: number;
-  time: number; // Seconds taken
+  time: number;
 }
 
 export interface Question {
@@ -19,9 +18,11 @@ export interface Question {
   options: string[];
 }
 
+export type DifficultyLevel = 1 | 2 | 3 | 4;
+
 export enum GameStatus {
   SETUP = 'SETUP',
-  INTERMISSION = 'INTERMISSION', // Between players
+  INTERMISSION = 'INTERMISSION',
   PLAYING = 'PLAYING',
   SUMMARY = 'SUMMARY'
 }
