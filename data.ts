@@ -53,7 +53,7 @@ export const LEVEL_1_DATA: WordData[] = [
   { "id": "c49", "hitza": "hanka", "sinonimoak": ["zango", "berna", "izter"] },
   { "id": "c50", "hitza": "berna", "sinonimoak": ["zangosagar", "aztal", "zangar"] },
   { "id": "c51", "hitza": "jin", "sinonimoak": ["etorri"] },
-  { "id": "c52", "hitza": "irla", "sinonimoak": ["uharte"] }
+  { "id": "c52", "hitza": "irla", "sinonimoak": ["uharte"] },
 { "id": "c53", "hitza": "oroitu", "sinonimoak": ["gogoratu", "gomutatu", "gogoan izan"] }
 { "id": "c54", "hitza": "izaera", "sinonimoak": ["aiurri", "nortasun", "seta"] }
 { "id": "c55", "hitza": "gaitzetsi", "sinonimoak": ["ezetsi", "hastandu"] }
