@@ -52,7 +52,29 @@ export const LEVEL_1_DATA: WordData[] = [
   { "id": "c48", "hitza": "seko", "sinonimoak": ["guztiz", "zeharo", "total" , "erabat"] },
   { "id": "c49", "hitza": "hanka", "sinonimoak": ["zango", "berna", "izter"] },
   { "id": "c50", "hitza": "berna", "sinonimoak": ["zangosagar", "aztal", "zangar"] },
-  { "id": "c51", "hitza": "jin", "sinonimoak": ["etorri"] }
+  { "id": "c51", "hitza": "jin", "sinonimoak": ["etorri"] },
+  { "id": "c52", "hitza": "irla", "sinonimoak": ["uharte"] }
+{ "id": "c53", "hitza": "oroitu", "sinonimoak": ["gogoratu", "gomutatu", "gogoan izan"] }
+{ "id": "c54", "hitza": "izaera", "sinonimoak": ["aiurri", "nortasun", "seta"] }
+{ "id": "c55", "hitza": "gaitzetsi", "sinonimoak": ["ezetsi", "hastandu"] }
+{ "id": "c56", "hitza": "ortu", "sinonimoak": ["baratze"] }
+{ "id": "c57", "hitza": "eltze", "sinonimoak": ["lapiko", "tupina"] }
+{ "id": "c58", "hitza": "kapela", "sinonimoak": ["txano"] }
+{ "id": "c59", "hitza": "mediku", "sinonimoak": ["sendagile", "osagile", "osatzaile"] }
+{ "id": "c60", "hitza": "oski", "sinonimoak": ["zapata"] }
+{ "id": "c61", "hitza": "goraintzi", "sinonimoak": ["eskumuin"] }
+{ "id": "c62", "hitza": "zama", "sinonimoak": ["karga", "haxe"] }
+{ "id": "c63", "hitza": "eserleku", "sinonimoak": ["jarleku", "jesarleku", "esertoki"] }
+{ "id": "c64", "hitza": "arraro", "sinonimoak": ["bitxi", "arrotz"] }
+{ "id": "c65", "hitza": "ezezaguna", "sinonimoak": ["arrotz"] }
+{ "id": "c66", "hitza": "familia", "sinonimoak": ["sendi", "senitarte"] }
+{ "id": "c67", "hitza": "ezkutatu", "sinonimoak": ["ostendu"] }
+{ "id": "c68", "hitza": "hondatu", "sinonimoak": ["suntsitu", "erraustu", "txikitu"] }
+{ "id": "c69", "hitza": "beti", "sinonimoak": ["betiere", "aldiro", "une oro", "aldi oro"] }
+{ "id": "c70", "hitza": "salto egin", "sinonimoak": ["jauzi egin", "saltatu"] }
+{ "id": "c71", "hitza": "begiratu", "sinonimoak": ["behatu", "so egin"] }
+{ "id": "c72", "hitza": "indarkeria", "sinonimoak": ["bortxakeria", "gogorkeria", "biolentzia"] }
+{ "id": "c73", "hitza": "bide batez", "sinonimoak": ["bidenabar", "bidez"] }
 ];
 
 export const EXTENDED_DATA: WordData[] = [
