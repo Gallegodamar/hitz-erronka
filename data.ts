@@ -78,7 +78,6 @@ export const LEVEL_1_DATA: WordData[] = [
 { "id": "c74", "hitza": "hozbero", "sinonimoak": ["tenperatura"] },
 { "id": "c75", "hitza": "sargori", "sinonimoak": ["sapa", "lanbero"] },
 { "id": "c76", "hitza": "umel", "sinonimoak": ["heze", "ezko", "busti"] },
-
 { "id": "c77", "hitza": "erauzi", "sinonimoak": ["kendu", "idoki"] },
 { "id": "c78", "hitza": "oihartzun", "sinonimoak": ["durundi"] },
 { "id": "c79", "hitza": "galbideratu", "sinonimoak": ["perbertitu", "okertu"] },
@@ -91,61 +90,15 @@ export const LEVEL_1_DATA: WordData[] = [
 { "id": "c86", "hitza": "belaunaldi", "sinonimoak": ["gizaldi"] },
 { "id": "c87", "hitza": "argitaraldi", "sinonimoak": ["argitalpen", "edizio"] },
 { "id": "c88", "hitza": "gorespen", "sinonimoak": ["goraipamen", "gorazarre", "laudorio", "laudamen"] },
-  {
-    "id": "c89",
-    "hitza": "biziraute",
-    "sinonimoak": [
-      "biziraupen"
-    ]
-  },
-  {
-    "id": "c90",
-    "hitza": "kaskartu",
-    "sinonimoak": [
-      "txartu",
-      "okerragotu",
-      "gaizkoatu"
-    ]
-  },
-  {
-    "id": "c91",
-    "hitza": "ezkontide",
-    "sinonimoak": [
-      "ezkonlagun",
-      "bizikide",
-      "bizilagun"
-    ]
-  },
-  {
-    "id": "c92",
-    "hitza": "deitoratu",
-    "sinonimoak": [
-      "auhendatu",
-      "adiakatu",
-      "tamaldu",
-      "penatu"
-    ]
-  },
-  {
-    "id": "c93",
-    "hitza": "berau",
-    "sinonimoak": [
-      "hauxe",
-      "hau bera"
-    ]
-  },
-  {
-    "id": "c94",
-    "hitza": "sastakatu",
-    "sinonimoak": [
-      "sastatu",
-      "aiztoa sartu"
-    ]
-  }
-
-
-
-
+{"id":"c89","hitza":"biziraute","sinonimoak":["biziraupen"]},
+{"id":"c90","hitza":"kaskartu","sinonimoak":["txartu","okerragotu","gaizkoatu"]},
+{"id":"c91","hitza":"ezkontide","sinonimoak":["ezkonlagun","bizikide","bizilagun"]},
+{"id":"c92","hitza":"deitoratu","sinonimoak":["auhendatu","adiakatu","tamaldu","penatu"]},
+{"id":"c93","hitza":"berau","sinonimoak":["hauxe","hau bera"]},
+{"id":"c94","hitza":"sastakatu","sinonimoak":["sastatu","aiztoa sartu"]},
+{"id":"c95","hitza":"emagaldu","sinonimoak":["ematxar","urdanga","maritzar","julis","bordion"]},
+{"id":"c96","hitza":"zoroetxe","sinonimoak":["eroetxe","erotegi"]},
+{"id":"c97","hitza":"biziraupen","sinonimoak":["biziraute"]}
 ];
 
 export const EXTENDED_DATA: WordData[] = [
