@@ -90,7 +90,58 @@ export const LEVEL_1_DATA: WordData[] = [
 { "id": "c85", "hitza": "esamesa", "sinonimoak": ["zurrumurru", "erran-merran", "elepide"] },
 { "id": "c86", "hitza": "belaunaldi", "sinonimoak": ["gizaldi"] },
 { "id": "c87", "hitza": "argitaraldi", "sinonimoak": ["argitalpen", "edizio"] },
-{ "id": "c88", "hitza": "gorespen", "sinonimoak": ["goraipamen", "gorazarre", "laudorio", "laudamen"] }
+{ "id": "c88", "hitza": "gorespen", "sinonimoak": ["goraipamen", "gorazarre", "laudorio", "laudamen"] },
+  {
+    "id": "c89",
+    "hitza": "biziraute",
+    "sinonimoak": [
+      "biziraupen"
+    ]
+  },
+  {
+    "id": "c90",
+    "hitza": "kaskartu",
+    "sinonimoak": [
+      "txartu",
+      "okerragotu",
+      "gaizkoatu"
+    ]
+  },
+  {
+    "id": "c91",
+    "hitza": "ezkontide",
+    "sinonimoak": [
+      "ezkonlagun",
+      "bizikide",
+      "bizilagun"
+    ]
+  },
+  {
+    "id": "c92",
+    "hitza": "deitoratu",
+    "sinonimoak": [
+      "auhendatu",
+      "adiakatu",
+      "tamaldu",
+      "penatu"
+    ]
+  },
+  {
+    "id": "c93",
+    "hitza": "berau",
+    "sinonimoak": [
+      "hauxe",
+      "hau bera"
+    ]
+  },
+  {
+    "id": "c94",
+    "hitza": "sastakatu",
+    "sinonimoak": [
+      "sastatu",
+      "aiztoa sartu"
+    ]
+  }
 
 
 
