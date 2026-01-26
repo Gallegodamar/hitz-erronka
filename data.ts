@@ -77,7 +77,17 @@ export const LEVEL_1_DATA: WordData[] = [
 { "id": "c73", "hitza": "bide batez", "sinonimoak": ["bidenabar", "bidez"] },
 { "id": "c74", "hitza": "hozbero", "sinonimoak": ["tenperatura"] },
 { "id": "c75", "hitza": "sargori", "sinonimoak": ["sapa", "lanbero"] },
-{ "id": "c76", "hitza": "umel", "sinonimoak": ["heze", "ezko", "busti"] }
+{ "id": "c76", "hitza": "umel", "sinonimoak": ["heze", "ezko", "busti"] },
+
+{ "id": "c77", "hitza": "erauzi", "sinonimoak": ["kendu", "idoki"] },
+{ "id": "c78", "hitza": "oihartzun", "sinonimoak": ["durundi"] },
+{ "id": "c79", "hitza": "galbideratu", "sinonimoak": ["perbertitu", "okertu"] },
+{ "id": "c80", "hitza": "gupida", "sinonimoak": ["erruki", "urriki"] },
+{ "id": "c81", "hitza": "inguruabar", "sinonimoak": ["egoera", "zertzelada", "kondizio"] }
+
+
+
+
 ];
 
 export const EXTENDED_DATA: WordData[] = [
