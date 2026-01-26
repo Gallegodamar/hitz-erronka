@@ -83,7 +83,14 @@ export const LEVEL_1_DATA: WordData[] = [
 { "id": "c78", "hitza": "oihartzun", "sinonimoak": ["durundi"] },
 { "id": "c79", "hitza": "galbideratu", "sinonimoak": ["perbertitu", "okertu"] },
 { "id": "c80", "hitza": "gupida", "sinonimoak": ["erruki", "urriki"] },
-{ "id": "c81", "hitza": "inguruabar", "sinonimoak": ["egoera", "zertzelada", "kondizio"] }
+{ "id": "c81", "hitza": "inguruabar", "sinonimoak": ["egoera", "zertzelada", "kondizio"] },
+{ "id": "c82", "hitza": "lotsagabe", "sinonimoak": ["lotsabako", "lotsagaldu", "ahalkegabe"] },
+{ "id": "c83", "hitza": "iragarri", "sinonimoak": ["komunikatu", "jakinarazi"] },
+{ "id": "c84", "hitza": "emanaldi", "sinonimoak": ["emankizun", "saio", "emisio"] },
+{ "id": "c85", "hitza": "esamesa", "sinonimoak": ["zurrumurru", "erran-merran", "elepide"] },
+{ "id": "c86", "hitza": "belaunaldi", "sinonimoak": ["gizaldi"] },
+{ "id": "c87", "hitza": "argitaraldi", "sinonimoak": ["argitalpen", "edizio"] },
+{ "id": "c88", "hitza": "gorespen", "sinonimoak": ["goraipamen", "gorazarre", "laudorio", "laudamen"] }
 
 
 
