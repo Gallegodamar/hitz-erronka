@@ -131,7 +131,12 @@ export const LEVEL_1_DATA: WordData[] = [
   {"id":"c127","hitza":"ontasun","sinonimoak":["onezia","onberatasun"]},
   {"id":"c128","hitza":"hurkotasun","sinonimoak":["hurbiltasun","gertutasun"]},
   {"id":"c129","hitza":"gogorarazi","sinonimoak":["burura ekarri","oroitarazi","gomutarazi"]},
-  {"id":"c130","hitza":"haserretu","sinonimoak":["sumindu","muturtu","koskatu","zapuztu","zipoztu"]}
+  {"id":"c130","hitza":"haserretu","sinonimoak":["sumindu","muturtu","koskatu","zapuztu","zipoztu"]},
+  {"id":"c131","hitza":"jakinez","sinonimoak":["ezjakintasun","ezjakite","ezezgutza"]},
+  {"id":"c132","hitza":"beharrizan","sinonimoak":["behar","premia","derrigortasun"]},
+  {"id":"c133","hitza":"xahutu","sinonimoak":["eralgi","zarrasteldu","irion","irazi"]},
+  {"id":"c134","hitza":"gabetasun","sinonimoak":["hutsune","peitu","falta"]},
+  {"id":"c135","hitza":"bermatu","sinonimoak":["garantizatu"]}
 ];
 
 export const EXTENDED_DATA: WordData[] = [
