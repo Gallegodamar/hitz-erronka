@@ -109,7 +109,29 @@ export const LEVEL_1_DATA: WordData[] = [
   {"id":"c105","hitza":"gizatalde","sinonimoak":["talde","kolektibo"]},
   {"id":"c106","hitza":"burujabetza","sinonimoak":["subiranotasun","berjabetasun"]},
   {"id":"c107","hitza":"sinatu","sinonimoak":["izenpetu"]},
-  {"id":"c108","hitza":"mintzo izan","sinonimoak":["hitz egin","mintzatu","berba egin","solas egin"]}
+  {"id":"c108","hitza":"mintzo izan","sinonimoak":["hitz egin","mintzatu","berba egin","solas egin"]},
+  {"id":"c109","hitza":"muzin egin","sinonimoak":["mespretxatu","arbuiatu","gutxietsi"]},
+  {"id":"c110","hitza":"oraintsu","sinonimoak":["berriki","oraindik orain"]},
+  {"id":"c111","hitza":"soil","sinonimoak":["xume","xalo","laño"]},
+  {"id":"c112","hitza":"partaidetza","sinonimoak":["parte-hartze","partaidetasun","esku-harmen"]},
+  {"id":"c113","hitza":"arrapala","sinonimoak":["aldapa","aldats","malda","ike"]},
+  {"id":"c114","hitza":"narriadura","sinonimoak":["degradazio"]},
+  {"id":"c115","hitza":"ezagutzera eman","sinonimoak":["jakinarazi","ezagutarazi"]},
+  {"id":"c116","hitza":"matxura","sinonimoak":["aberia"]},
+  {"id":"c117","hitza":"gaitasun","sinonimoak":["trebetasun","trebezia"]},
+  {"id":"c118","hitza":"herritartasun","sinonimoak":["hiritartasun","hiritargo"]},
+  {"id":"c119","hitza":"isilaldi","sinonimoak":["isilune"]},
+  {"id":"c120","hitza":"onbideratu","sinonimoak":["oneratu"]},
+  {"id":"c121","hitza":"lelo","sinonimoak":["goiburu","ikurritz","eslogan"]},
+  {"id":"c122","hitza":"hara-hona","sinonimoak":["batera eta bestera","gora eta behera","harat-honat"]},
+  {"id":"c123","hitza":"tardatu","sinonimoak":["berandutu"]},
+  {"id":"c124","hitza":"zarratu","sinonimoak":["itxi","hetsi","zerratu"]},
+  {"id":"c125","hitza":"gainbehera","sinonimoak":["dekadentzia","endekapen"]},
+  {"id":"c126","hitza":"mamitsu","sinonimoak":["sakon","adierazgarri"]},
+  {"id":"c127","hitza":"ontasun","sinonimoak":["onezia","onberatasun"]},
+  {"id":"c128","hitza":"hurkotasun","sinonimoak":["hurbiltasun","gertutasun"]},
+  {"id":"c129","hitza":"gogorarazi","sinonimoak":["burura ekarri","oroitarazi","gomutarazi"]},
+  {"id":"c130","hitza":"haserretu","sinonimoak":["sumindu","muturtu","koskatu","zapuztu","zipoztu"]}
 ];
 
 export const EXTENDED_DATA: WordData[] = [
