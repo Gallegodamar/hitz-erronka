@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { LEVEL_1_DATA, EXTENDED_DATA } from './data';
 import { WordData, Player, Question, GameStatus, DifficultyLevel } from './types';
 
@@ -365,7 +366,11 @@ const App: React.FC = () => {
     );
   }
 
-  return null;
+  return (
+    <>
+      <Analytics />
+    </>
+  );
 };
 
 export default App;
