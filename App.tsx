@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { LEVEL_1_DATA, EXTENDED_DATA } from './data';
 import { WordData, Player, Question, GameStatus, DifficultyLevel } from './types';
 
@@ -167,7 +168,9 @@ const App: React.FC = () => {
 
   if (status === GameStatus.SETUP) {
     return (
-      <div className="h-screen flex flex-col items-center justify-center p-2 bg-gradient-to-br from-indigo-800 via-indigo-950 to-black overflow-hidden">
+      <>
+        <Analytics />
+        <div className="h-screen flex flex-col items-center justify-center p-2 bg-gradient-to-br from-indigo-800 via-indigo-950 to-black overflow-hidden">
         <div className="bg-white p-5 md:p-8 rounded-[2rem] shadow-2xl w-full max-w-xl flex flex-col max-h-full border-2 border-white/20">
           <div className="text-center mb-3 shrink-0">
             <h1 className="text-2xl md:text-3xl font-black text-indigo-950 tracking-tighter">Sinonimoen Erronka</h1>
@@ -205,13 +208,16 @@ const App: React.FC = () => {
           </button>
         </div>
       </div>
+      </>
     );
   }
 
   if (status === GameStatus.INTERMISSION) {
     const player = players[currentPlayerIndex];
     return (
-      <div className="h-screen flex flex-col items-center justify-center p-4 bg-slate-950 overflow-hidden">
+      <>
+        <Analytics />
+        <div className="h-screen flex flex-col items-center justify-center p-4 bg-slate-950 overflow-hidden">
         <div className="bg-white p-8 rounded-[2.5rem] shadow-2xl text-center max-w-sm w-full border-b-[8px] border-indigo-600">
           <div className="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-3xl font-black mx-auto mb-4">
             {currentPlayerIndex + 1}
@@ -226,6 +232,7 @@ const App: React.FC = () => {
           </button>
         </div>
       </div>
+      </>
     );
   }
 
@@ -235,7 +242,9 @@ const App: React.FC = () => {
     const currentPlayer = players[currentPlayerIndex];
 
     return (
-      <div className="h-screen flex flex-col items-center p-2 md:p-4 bg-slate-50 overflow-hidden">
+      <>
+        <Analytics />
+        <div className="h-screen flex flex-col items-center p-2 md:p-4 bg-slate-50 overflow-hidden">
         <div className="w-full max-w-4xl flex justify-between items-center mb-3 gap-2 shrink-0">
           <div className="flex items-center space-x-2">
              <div className="bg-indigo-600 text-white px-3 py-1.5 rounded-xl text-xs font-black shadow-md">
@@ -305,6 +314,7 @@ const App: React.FC = () => {
           )}
         </div>
       </div>
+      </>
     );
   }
 
@@ -317,7 +327,9 @@ const App: React.FC = () => {
       });
 
     return (
-      <div className="h-screen flex flex-col items-center justify-center p-2 bg-indigo-950 overflow-hidden">
+      <>
+        <Analytics />
+        <div className="h-screen flex flex-col items-center justify-center p-2 bg-indigo-950 overflow-hidden">
         <div className="bg-white w-full max-w-2xl rounded-[2.5rem] shadow-2xl p-6 md:p-10 border border-white/10 text-center flex flex-col max-h-full">
           <div className="mb-4 shrink-0">
             <h2 className="text-3xl font-black text-slate-900 tracking-tight">Emaitzak</h2>
@@ -362,6 +374,7 @@ const App: React.FC = () => {
           </div>
         </div>
       </div>
+      </>
     );
   }
 
