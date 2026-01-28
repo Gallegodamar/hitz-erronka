@@ -21,6 +21,7 @@ export interface Question {
 export type DifficultyLevel = 1 | 2 | 3 | 4;
 
 export enum GameStatus {
+  MENU = 'MENU',
   SETUP = 'SETUP',
   INTERMISSION = 'INTERMISSION',
   PLAYING = 'PLAYING',

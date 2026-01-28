@@ -14,7 +14,6 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   return newArr;
 };
 
-// Heuristic to get word "type" based on common Basque suffixes
 const getWordType = (word: string): string => {
   const normalized = word.toLowerCase().trim();
   if (normalized.endsWith('tu') || normalized.endsWith('du') || normalized.endsWith('ten') || normalized.endsWith('tzen')) return 'verb';
@@ -53,40 +52,26 @@ const App: React.FC = () => {
     if (level === 1) {
       poolSource = [...LEVEL_1_DATA];
     } else {
-      // Split 972 entries into 3 blocks of 324
       const start = (level - 2) * 324;
       const end = start + 324;
       poolSource = EXTENDED_DATA.slice(start, end);
     }
 
-    // Ensure we have enough unique questions or recycle if necessary
     let gameData = [...poolSource];
     while (gameData.length < needed) {
       gameData = [...gameData, ...poolSource];
     }
     gameData = shuffleArray(gameData).slice(0, needed);
-
-    // Get all words in this level for distractors
     const allWordsInPool = poolSource.flatMap(d => [d.hitza, ...d.sinonimoak]);
 
     return gameData.map((data) => {
       const correctAnswer = data.sinonimoak[Math.floor(Math.random() * data.sinonimoak.length)];
       const targetType = getWordType(data.hitza);
-      
-      // Filter distractors by same "type" if possible
-      let distractorsPool = allWordsInPool.filter(w => 
-        w !== data.hitza && 
-        !data.sinonimoak.includes(w)
-      );
-
+      let distractorsPool = allWordsInPool.filter(w => w !== data.hitza && !data.sinonimoak.includes(w));
       const sameTypeDistractors = distractorsPool.filter(w => getWordType(w) === targetType);
-      
-      // If we don't have enough same-type distractors, use the general pool
       const finalDistractorsSource = sameTypeDistractors.length >= 10 ? sameTypeDistractors : distractorsPool;
-      
       const shuffledDistractors = shuffleArray(Array.from(new Set(finalDistractorsSource))).slice(0, 3);
       const options = shuffleArray([correctAnswer, ...shuffledDistractors]);
-
       return { wordData: data, correctAnswer, options };
     });
   };
@@ -118,7 +103,8 @@ const App: React.FC = () => {
   const handleAnswer = (answer: string) => {
     if (isAnswered) return;
     const poolIdx = (currentPlayerIndex * QUESTIONS_PER_PLAYER + currentQuestionIndex);
-    const currentQuestion = questionPool[poolIdx];
+    const currentQuestion = poolIdx >= 0 && poolIdx < questionPool.length ? questionPool[poolIdx] : null;
+    if (!currentQuestion) return;
     const isCorrect = answer === currentQuestion.correctAnswer;
     setSelectedAnswer(answer);
     setIsAnswered(true);
@@ -156,12 +142,6 @@ const App: React.FC = () => {
   };
 
   const forceFinishGame = () => {
-    if (status === GameStatus.PLAYING) {
-      const endTime = Date.now();
-      const realSeconds = (endTime - turnStartTimeRef.current) / 1000;
-      const totalSecondsWithPenalty = realSeconds + currentTurnPenalties;
-      setPlayers(prev => prev.map((p, idx) => idx === currentPlayerIndex ? { ...p, time: totalSecondsWithPenalty } : p));
-    }
     setStatus(GameStatus.SUMMARY);
   };
 
@@ -169,21 +149,20 @@ const App: React.FC = () => {
     return (
       <div className="h-screen flex flex-col items-center justify-center p-2 bg-gradient-to-br from-indigo-800 via-indigo-950 to-black overflow-hidden">
         <div className="bg-white p-5 md:p-8 rounded-[2rem] shadow-2xl w-full max-w-xl flex flex-col max-h-full border-2 border-white/20">
-          <div className="text-center mb-3 shrink-0">
-            <h1 className="text-2xl md:text-3xl font-black text-indigo-950 tracking-tighter">Sinonimoen Erronka</h1>
-            <p className="text-[10px] text-slate-400 font-bold uppercase">Hiztegiaren erronka handiena</p>
+          <div className="text-center mb-6 shrink-0 flex justify-center items-center">
+            <h1 className="text-3xl md:text-4xl font-black text-indigo-950 tracking-tighter uppercase">Sinonimoen Erronka</h1>
           </div>
           
-          <div className="grid grid-cols-2 gap-3 mb-4 shrink-0">
-            <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100">
-               <label className="block text-[10px] font-black text-indigo-900 uppercase mb-2">Jokalariak: <span className="text-indigo-600 text-base">{numPlayers}</span></label>
+          <div className="grid grid-cols-2 gap-3 mb-6 shrink-0">
+            <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+               <label className="block text-xs font-black text-indigo-900 uppercase mb-3">Jokalariak: <span className="text-indigo-600 text-lg">{numPlayers}</span></label>
                <input type="range" min="1" max="10" value={numPlayers} onChange={(e) => setNumPlayers(parseInt(e.target.value))} className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600" />
             </div>
-            <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100">
-               <label className="block text-[10px] font-black text-indigo-900 uppercase mb-2">Jokoaren Maila</label>
-               <div className="flex bg-white rounded-lg p-1 border border-slate-200 text-[10px] font-black h-8">
+            <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+               <label className="block text-xs font-black text-indigo-900 uppercase mb-3">Jokoaren Maila</label>
+               <div className="flex bg-white rounded-xl p-1 border border-slate-200 text-xs font-black h-10">
                  {([1, 2, 3, 4] as DifficultyLevel[]).map(d => (
-                   <button key={d} onClick={() => setDifficulty(d)} className={`flex-1 rounded-md transition-all ${difficulty === d ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-400'}`}>
+                   <button key={d} onClick={() => setDifficulty(d)} className={`flex-1 rounded-lg transition-all ${difficulty === d ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-600'}`}>
                      {d}
                    </button>
                  ))}
@@ -191,16 +170,25 @@ const App: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 mb-4 overflow-y-auto pr-1 shrink min-h-0 custom-scrollbar">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 overflow-y-auto pr-2 shrink min-h-0 custom-scrollbar">
             {players.map((p) => (
-              <div key={p.id} className="bg-slate-50 p-2 rounded-xl border border-slate-100 flex flex-col">
-                <label className="text-[8px] font-black text-slate-400 uppercase">Jokalaria {p.id + 1}</label>
-                <input type="text" value={p.name} onChange={(e) => handlePlayerNameChange(p.id, e.target.value)} className="p-0 bg-transparent border-none focus:ring-0 font-bold text-slate-800 text-xs" />
+              <div key={p.id} className="bg-slate-50 p-3 rounded-2xl border border-slate-100 flex flex-col focus-within:ring-2 focus-within:ring-indigo-500 transition-all">
+                <label className="text-[10px] font-black text-slate-400 uppercase mb-1">Jokalaria {p.id + 1}</label>
+                <input 
+                  type="text" 
+                  value={p.name} 
+                  onChange={(e) => handlePlayerNameChange(p.id, e.target.value)} 
+                  className="p-0 bg-transparent border-none focus:ring-0 font-bold text-slate-800 text-sm placeholder-slate-300" 
+                  placeholder="Idatzi izena..."
+                />
               </div>
             ))}
           </div>
           
-          <button onClick={startNewGame} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-black py-4 rounded-2xl transition-all shadow-lg active:scale-95 text-base uppercase tracking-widest shrink-0">
+          <button 
+            onClick={startNewGame} 
+            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-black py-5 rounded-2xl transition-all shadow-xl active:scale-95 text-xl uppercase tracking-widest shrink-0"
+          >
             HASI JOKOA
           </button>
         </div>
@@ -231,8 +219,10 @@ const App: React.FC = () => {
 
   if (status === GameStatus.PLAYING) {
     const poolIdx = (currentPlayerIndex * QUESTIONS_PER_PLAYER + currentQuestionIndex);
-    const currentQuestion = questionPool[poolIdx];
+    const currentQuestion = poolIdx >= 0 && poolIdx < questionPool.length ? questionPool[poolIdx] : null;
     const currentPlayer = players[currentPlayerIndex];
+
+    if (!currentQuestion) return null;
 
     return (
       <div className="h-screen flex flex-col items-center p-2 md:p-4 bg-slate-50 overflow-hidden">
@@ -270,14 +260,14 @@ const App: React.FC = () => {
           </div>
 
           <div className="text-center mb-6 shrink-0 mt-4">
-            <h3 className="text-4xl md:text-5xl font-black text-slate-900 break-words leading-none">
+            <h3 className="text-4xl md:text-5xl font-black text-slate-900 break-words leading-none uppercase">
               {currentQuestion.wordData.hitza}
             </h3>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 grow overflow-y-auto pr-1 custom-scrollbar">
             {currentQuestion.options.map((opt, i) => {
-              let buttonStyle = "p-4 rounded-2xl border-2 font-bold text-lg transition-all duration-200 flex items-center justify-center text-center min-h-[4rem] ";
+              let buttonStyle = "p-4 rounded-2xl border-2 font-black text-xl md:text-2xl transition-all duration-200 flex items-center justify-center text-center min-h-[5rem] ";
               if (!isAnswered) buttonStyle += "bg-white border-slate-50 hover:border-indigo-500 hover:bg-indigo-50 text-slate-700 cursor-pointer shadow-sm active:translate-y-0.5";
               else {
                 if (opt === currentQuestion.correctAnswer) buttonStyle += "bg-emerald-500 border-emerald-300 text-white shadow-lg scale-102 z-10";
@@ -298,7 +288,7 @@ const App: React.FC = () => {
                  {feedback?.message}
                  {feedback?.penaltyApplied && <span className="bg-rose-100 text-rose-700 text-[10px] px-2 py-0.5 rounded italic">+10s</span>}
                </div>
-               <button onClick={nextQuestion} className="bg-indigo-950 hover:bg-black text-white font-black py-4 px-10 rounded-2xl shadow-lg transition-all active:scale-95 text-lg flex items-center gap-2">
+               <button onClick={nextQuestion} className="bg-indigo-950 hover:bg-black text-white font-black py-4 px-10 rounded-2xl shadow-lg transition-all active:scale-95 text-lg flex items-center gap-2 uppercase">
                  {currentQuestionIndex < 9 ? "Hurrengoa" : "Txanda bukatu"}
                </button>
             </div>
@@ -316,48 +306,104 @@ const App: React.FC = () => {
         return a.time - b.time;
       });
 
+    // Group unique WordData from the session
+    // Added explicit type to Map and sort parameters to fix TypeScript inference errors
+    const playedWordData: WordData[] = Array.from(new Map<string, WordData>(
+      questionPool.map(q => [q.wordData.hitza, q.wordData])
+    ).values()).sort((a: WordData, b: WordData) => a.hitza.localeCompare(b.hitza));
+
     return (
       <div className="h-screen flex flex-col items-center justify-center p-2 bg-indigo-950 overflow-hidden">
-        <div className="bg-white w-full max-w-2xl rounded-[2.5rem] shadow-2xl p-6 md:p-10 border border-white/10 text-center flex flex-col max-h-full">
+        <div className="bg-white w-full max-w-2xl rounded-[2.5rem] shadow-2xl p-4 md:p-8 border border-white/10 text-center flex flex-col max-h-[95vh]">
           <div className="mb-4 shrink-0">
-            <h2 className="text-3xl font-black text-slate-900 tracking-tight">Emaitzak</h2>
-            <p className="text-[10px] font-black text-indigo-400 uppercase tracking-widest">{difficulty}. Maila</p>
-            <div className="h-1.5 w-16 bg-indigo-600 mx-auto rounded-full mt-1"></div>
+            <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight uppercase leading-none">Emaitzak</h2>
+            <p className="text-[10px] font-black text-indigo-400 uppercase tracking-widest mt-1">{difficulty}. Maila</p>
+            <div className="h-1.5 w-16 bg-indigo-600 mx-auto rounded-full mt-2"></div>
           </div>
 
-          {sortedPlayers.length === 0 ? (
-            <div className="py-10 text-slate-400 font-bold italic">Ez da emaitzarik gordetu.</div>
-          ) : (
-            <div className="mb-6 overflow-y-auto rounded-2xl border border-slate-100 shadow-inner bg-slate-50 grow min-h-0 custom-scrollbar">
-              <table className="w-full text-left">
-                <thead className="sticky top-0 bg-slate-100 z-10">
+          <div className="grow flex flex-col min-h-0 gap-4 mb-4">
+            {/* Classification Table */}
+            <div className="overflow-y-auto rounded-2xl border border-slate-100 shadow-inner bg-slate-50 flex-1 min-h-[140px] custom-scrollbar">
+              <table className="w-full text-left border-collapse">
+                <thead className="sticky top-0 bg-slate-100 z-10 shadow-sm">
                   <tr>
-                    <th className="px-4 py-2 text-[9px] font-black text-slate-500 uppercase">Pos.</th>
-                    <th className="px-4 py-2 text-[9px] font-black text-slate-500 uppercase">Izena</th>
-                    <th className="px-4 py-2 text-[9px] font-black text-slate-500 uppercase text-center">Pts</th>
-                    <th className="px-4 py-2 text-[9px] font-black text-slate-500 uppercase text-right">Denb.</th>
+                    <th className="px-3 py-2 text-[9px] font-black text-slate-500 uppercase">Pos.</th>
+                    <th className="px-3 py-2 text-[9px] font-black text-slate-500 uppercase">Izena</th>
+                    <th className="px-3 py-2 text-[9px] font-black text-slate-500 uppercase text-center">Pts</th>
+                    <th className="px-3 py-2 text-[9px] font-black text-slate-500 uppercase text-right">Denb.</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-200 bg-white">
-                  {sortedPlayers.map((p, idx) => (
-                    <tr key={p.id} className={idx === 0 ? "bg-amber-50" : ""}>
-                      <td className="px-4 py-3 font-black text-lg">{idx === 0 ? "🥇" : idx === 1 ? "🥈" : idx === 2 ? "🥉" : `${idx + 1}.`}</td>
-                      <td className="px-4 py-3 font-bold text-slate-800 text-sm">{p.name}</td>
-                      <td className="px-4 py-3 text-center"><span className="bg-indigo-600 text-white px-2 py-0.5 rounded-lg font-black text-xs">{p.score}</span></td>
-                      <td className="px-4 py-3 text-right font-mono font-bold text-slate-500 text-xs">{p.time.toFixed(2)}s</td>
-                    </tr>
-                  ))}
+                  {sortedPlayers.length === 0 ? (
+                    <tr><td colSpan={4} className="py-10 text-slate-400 font-bold italic text-center">Ez da emaitzarik gordetu.</td></tr>
+                  ) : (
+                    sortedPlayers.map((p, idx) => (
+                      <tr key={p.id} className={idx === 0 ? "bg-amber-50" : "hover:bg-slate-50 transition-colors"}>
+                        <td className="px-3 py-3 font-black text-lg">{idx === 0 ? "🥇" : idx === 1 ? "🥈" : idx === 2 ? "🥉" : `${idx + 1}.`}</td>
+                        <td className="px-3 py-3 font-bold text-slate-800 text-sm truncate max-w-[120px]">{p.name}</td>
+                        <td className="px-3 py-3 text-center"><span className="bg-indigo-600 text-white px-2 py-0.5 rounded-lg font-black text-xs shadow-sm">{p.score}</span></td>
+                        <td className="px-3 py-3 text-right font-mono font-bold text-slate-500 text-[10px]">{p.time.toFixed(2)}s</td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
             </div>
-          )}
 
-          <div className="flex flex-col sm:flex-row gap-2 shrink-0">
-            <button onClick={startNewGame} className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-black py-4 rounded-xl shadow-lg transition-all active:scale-95 text-sm uppercase tracking-widest">
-              BERRIRO
+            {/* Structured Dictionary Review Section */}
+            <div className="flex-[1.5] min-h-[200px] flex flex-col rounded-2xl border border-indigo-50 bg-indigo-50/30 overflow-hidden">
+               <div className="bg-indigo-600 py-1.5 px-4 flex justify-between items-center shrink-0">
+                  <h3 className="text-[10px] font-black text-white uppercase tracking-widest">Hitzak & Sinonimoak</h3>
+                  <span className="text-[9px] font-bold text-indigo-100 italic">Klikatu Elhuyarren ikusteko</span>
+               </div>
+               <div className="grow overflow-y-auto p-2 custom-scrollbar text-left">
+                  <div className="space-y-3">
+                    {playedWordData.map((data, idx) => (
+                      <div key={idx} className="bg-white p-3 rounded-xl border border-indigo-100 shadow-sm">
+                        <div className="flex items-center gap-2 mb-2">
+                           <span className="text-[8px] font-black bg-indigo-600 text-white px-1.5 py-0.5 rounded uppercase">Nagusia</span>
+                           <a 
+                             href={`https://hiztegiak.elhuyar.eus/eu/${data.hitza}`}
+                             target="_blank"
+                             rel="noopener noreferrer"
+                             className="text-indigo-900 font-black text-base hover:underline"
+                           >
+                             {data.hitza}
+                           </a>
+                        </div>
+                        <div className="flex flex-wrap gap-1.5">
+                           <span className="text-[8px] font-black text-indigo-400 uppercase py-1">Sinonimoak:</span>
+                           {data.sinonimoak.map((sin, sIdx) => (
+                             <a 
+                               key={sIdx}
+                               href={`https://hiztegiak.elhuyar.eus/eu/${sin}`}
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               className="bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded-lg font-bold text-[10px] hover:bg-indigo-600 hover:text-white transition-all border border-indigo-100/50"
+                             >
+                               {sin}
+                             </a>
+                           ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+               </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+            <button 
+              onClick={startNewGame} 
+              className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-black py-4 rounded-2xl shadow-xl transition-all active:scale-95 text-base uppercase tracking-widest"
+            >
+              BERRIRO JOLASTU
             </button>
-            <button onClick={() => setStatus(GameStatus.SETUP)} className="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-600 font-black py-4 rounded-xl transition-all active:scale-95 text-sm uppercase tracking-widest">
-              HASIERARA
+            <button 
+              onClick={() => setStatus(GameStatus.SETUP)} 
+              className="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-600 font-black py-4 rounded-2xl transition-all active:scale-95 text-base uppercase tracking-widest"
+            >
+              KONFIGURAZIOA
             </button>
           </div>
         </div>
