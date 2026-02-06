@@ -143,15 +143,15 @@ export const RAW_DATA: QuizData[] = [
       { "id": 2, "pregunta": "Zerezkoa da lekukoa?", "opciones": { "a": "Altzairuzkoa", "b": "Kanpotik egurrezkoa, barrutik metalezkoa", "c": "Egurrezkoa", "d": "Kanpotik egurrezkoa, barrutik aluminiozkoa" }, "respuesta_correcta": "c" },
       { "id": 3, "pregunta": "Lau Korrika ikusteko zenbat urte igaro behar dira?", "opciones": { "a": "Edizioa zein den", "b": "Hamar", "c": "Zortzi", "d": "Sei" }, "respuesta_correcta": "d" },
       { "id": 4, "pregunta": "Zenbat kilometro egiten dira Korrikan gutxi gorabehera?", "opciones": { "a": "2.100 inguru", "b": "3.500 inguru", "c": "1.500 inguru", "d": "3.000 inguru" }, "respuesta_correcta": "a" },
-      { "id": 5, "pregunta": "Zenbat Korrika amaitu ziren Baionan?", "opciones": { "a": "Bi", "b": "Hiru", "c": "Lau", "d": "Bakarra" }, "respuesta_correcta": "b" },
+      { "id": 5, "pregunta": "Zenbat Korrika amaitu ziren Baionan?", "opciones": { "a": "Bi", "b": "Hiru", "c": "Lau", "d": "Bakarra" }, "respuesta_correcta": "c" },
       { "id": 6, "pregunta": "Non ez da inoiz amaitu Korrika?", "opciones": { "a": "Donibane Garazin", "b": "Gasteizen", "c": "Baionan", "d": "Bilbo" }, "respuesta_correcta": "a" },
       { "id": 7, "pregunta": "Zenbat Korrika egin ziren XX. mendean?", "opciones": { "a": "9", "b": "12", "c": "10", "d": "11" }, "respuesta_correcta": "d" },
       { "id": 8, "pregunta": "Non ez da inoiz hasi Korrika?", "opciones": { "a": "Orreagan", "b": "Trebiñun", "c": "Azpeitian", "d": "Amurrion" }, "respuesta_correcta": "c" },
       { "id": 9, "pregunta": "Zein urtetan jarri zen martxan Korrika kultura?", "opciones": { "a": "2001ean, 12. edizioan", "b": "1999an, 11. edizioan", "c": "1995ean, 10. edizioan", "d": "1997an, 10. edizioan" }, "respuesta_correcta": "b" },
-      { "id": 10, "pregunta": "Nola du izena Korrikaren aldizkariak?", "opciones": { "a": "Korrika ibil bedi", "b": "Korrika ibilbidea", "c": "AEK Korrika", "d": "Korrika AEK" }, "respuesta_correcta": "c" },
+      { "id": 10, "pregunta": "Nola du izena Korrikaren ibilbidea azaltzen duen aplikazioak?", "opciones": { "a": "Korrika ibil bedi", "b": "Korrika ibilbidea", "c": "AEK Korrika", "d": "Korrika AEK" }, "respuesta_correcta": "c" },
       { "id": 11, "pregunta": "Zer gertatu zen lehenengo edizioa bukatu eta hurrengo egunean?", "opciones": { "a": "John Lennon tirokatu zuten.", "b": "Realak lehen liga irabazi zuen.", "c": "Fermin Muguruza jaio zen.", "d": "Life of Brian estreinatu zen zinema aretoetan." }, "respuesta_correcta": "a" },
-      { "id": 12, "pregunta": "Zein urtetan ez zen ospatu Korrika?", "opciones": { "a": "2022an", "b": "1979an", "c": "2020an", "d": "2021ean" }, "respuesta_correcta": "d" },
-      { "id": 13, "pregunta": "2007ko edizioan, zein ibaiaren ondotik ibili zen Korrika?", "opciones": { "a": "Zadorra", "b": "Bidasoa", "c": "Ibaizabal", "d": "Ebro" }, "respuesta_correcta": "d" },
+      { "id": 12, "pregunta": "Zein urtetan ez zen ospatu Korrika?", "opciones": { "a": "2022an", "b": "1980an", "c": "2020an", "d": "2021ean" }, "respuesta_correcta": "b" },
+      { "id": 13, "pregunta": "2007ko edizioan, ibilbidea eteteko zorian egon zen ibai batek gainezka egin zuelako. Zein?", "opciones": { "a": "Zadorra", "b": "Bidasoa", "c": "Ibaizabal", "d": "Ebro" }, "respuesta_correcta": "d" },
       { "id": 14, "pregunta": "Zein urtetan antolatu ziren diasporaren lehenengo Korrikak?", "opciones": { "a": "1997an", "b": "1999an", "c": "2001ean", "d": "1995ean" }, "respuesta_correcta": "b" },
       { "id": 15, "pregunta": "2011n, Euskaltzaindia omendu zuten. Noiz sortu zen?", "opciones": { "a": "1918an", "b": "1925ean", "c": "1921ean", "d": "1915ean" }, "respuesta_correcta": "a" },
       { "id": 16, "pregunta": "Nork idatzi zuen 22. edizioko mezua?", "opciones": { "a": "Onintza Enbeitak", "b": "Karmele Jaiok", "c": "Jon Arretxek", "d": "Harkaitz Canok" }, "respuesta_correcta": "b" },
@@ -159,14 +159,14 @@ export const RAW_DATA: QuizData[] = [
       { "id": 18, "pregunta": "2007ko edizioan zein mendate igo zuten?", "opciones": { "a": "Barazar", "b": "Herrera", "c": "Opakua", "d": "Urizaharra" }, "respuesta_correcta": "d" },
       { "id": 19, "pregunta": "Nork idatzi zuen 23. edizioko mezua?", "opciones": { "a": "Kepa Errastik", "b": "Kike Amonarrizek", "c": "Onintza Enbeita", "d": "Garazi Arrula" }, "respuesta_correcta": "d" },
       { "id": 20, "pregunta": "Non dago jatorrizko lekukoa?", "opciones": { "a": "San Telmo museoan", "b": "Guggenheim museoan", "c": "Euskararen Etxean", "d": "Izaskun Arrue kulturgunean" }, "respuesta_correcta": "a" },
-      { "id": 21, "pregunta": "Zenbatgarren edizioa atzeratu behar izan zen COVIDa dela eta?", "opciones": { "a": "19. edizioa.", "b": "20. edizioa", "c": "21. edizioa", "d": "22. edizioa" }, "respuesta_correcta": "d" },
+      { "id": 21, "pregunta": "Zenbatgarren edizioa atzeratu behar izan zen COVIDa zela eta?", "opciones": { "a": "19. edizioa.", "b": "20. edizioa", "c": "21. edizioa", "d": "22. edizioa" }, "respuesta_correcta": "d" },
       { "id": 22, "pregunta": "Nork idatzi zuen 19. edizioko mezua?", "opciones": { "a": "Eñaut Elorrietak", "b": "Joseba Sarrionandiak", "c": "Estitxu Fernandezek", "d": "Lorea Agirrek" }, "respuesta_correcta": "d" },
       { "id": 23, "pregunta": "Nork eraman zuen lehen aldiz lekukoa?", "opciones": { "a": "AEK-ko ikasle talde batek", "b": "Martin Ugaldek", "c": "Jose Mari Satrustegi akademikoak", "d": "Ramon Labayenek" }, "respuesta_correcta": "c" },
       { "id": 24, "pregunta": "Nork eramaten du lekukoa azken kilometroan?", "opciones": { "a": "Zozketa bidez erabakitzen da", "b": "AEK-ko Batzorde Nazionalak", "c": "Korrika laguntzaileen artean zozkatzen da", "d": "Eusko Jaurlaritzako Kultura sailburuak" }, "respuesta_correcta": "b" },
       {"id":25,"pregunta":"Zenbatgarren kilometroa egin zuen Lehendakariak 12. Korrikan?","opciones":{"a":"Lehengoa","b":"Bigarrena","c":"Ehungarrena","d":"Azkenaurrekoa"},"respuesta_correcta":"b"},
-      {"id":26,"pregunta":"Noiz hasi zen Korrika laguntzailea egiten?","opciones":{"a":"10. edizioan","b":"11. edizioan","c":"13. edizioan","d":"15. edizioan"},"respuesta_correcta":"b"},
+      {"id":26,"pregunta":"Noiz hasi zen Korrika laguntzailea egiten?","opciones":{"a":"10. edizioan","b":"11. edizioan","c":"13. edizioan","d":"15. edizioan"},"respuesta_correcta":"c"},
       {"id":27,"pregunta":"Zenbatgarren Korrikan izan zituzten arazoak Iruñean sartzeko?","opciones":{"a":"8. Korrikan","b":"10. Korrikan","c":"13. Korrikan","d":"15. Korrikan"},"respuesta_correcta":"c"},
-      {"id":28,"pregunta":"Zein ediziotarako prestatu zuten Bidaia intimoak dokumentala?","opciones":{"a":"13. Korrikarako","b":"14. Korrikarako","c":"15. Korrikarako","d":"16. Korrikarako"},"respuesta_correcta":"d"},
+      {"id":28,"pregunta":"Zein ediziotarako prestatu zuten -Bidaia intimoak- dokumentala?","opciones":{"a":"13. Korrikarako","b":"14. Korrikarako","c":"15. Korrikarako","d":"16. Korrikarako"},"respuesta_correcta":"d"},
       {"id":29,"pregunta":"Zenbatgarren Korrikan prestatu zuten mezua Xabier eta Miren Amurizak?","opciones":{"a":"15. Korrikan","b":"14. Korrikan","c":"13. Korrikan","d":"12. Korrikan"},"respuesta_correcta":"b"},
       {"id":30,"pregunta":"Zein urtetan sinatu zuten bakea AEK-k eta Eusko Jaurlaritzak?","opciones":{"a":"1993an","b":"1995ean","c":"1997an","d":"1999an"},"respuesta_correcta":"c"}
   ]
@@ -203,7 +203,7 @@ export const RAW_DATA: QuizData[] = [
       {"id":27,"pregunta":"Zenbat aldiz bukatu zen Korrika Gasteizen 80ko hamarkadan?","opciones":{"a":"Behin","b":"Bi aldiz","c":"Inoiz ez","d":"Bukatu ez, baina hasi behin"},"respuesta_correcta":"c"},
       {"id":28,"pregunta":"Zenbat aldiz bukatu zen Korrika Bilbon 80ko hamarkadan?","opciones":{"a":"Inoiz ez, soilik hasi","b":"Bitan","c":"Hirutan","d":"Behin"},"respuesta_correcta":"c"},
       {"id":29,"pregunta":"Zenbat aldiz hasi da Korrika Donibane-Lohitzunen?","opciones":{"a":"Behin soilik","b":"Hirutan","c":"Inoiz ez","d":"Bitan"},"respuesta_correcta":"c"},
-      {"id":30,"pregunta":"Lehen edizioa kontuan hartu gabe, noiz hasi zen Korrika herri batean hasten?","opciones":{"a":"1995ean","b":"1993an","c":"1997an","d":"1999an"},"respuesta_correcta":"b"}
+      {"id":30,"pregunta":"Lehen edizioa kontuan hartu gabe, noiz hasi zen Korrika herri batean hasten?","opciones":{"a":"1995ean","b":"1993an","c":"1997an","d":"1999an"},"respuesta_correcta":"c"}
     ]
   },
    ]
