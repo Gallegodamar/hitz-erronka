@@ -213,7 +213,11 @@ export const LEVEL_1_DATA: WordData[] = [
   {"id":"c209","hitza":"ezaupide","sinonimoak":["ezagutza","ezaguera"]},
   {"id":"c210","hitza":"itomen","sinonimoak":["estutasun","larritasun","estualdi"]},
   {"id":"c211","hitza":"kolpe","sinonimoak":["kaska","talka","koska","ukaldi"]},
-  {"id":"c212","hitza":"bereizgarri","sinonimoak":["ezaugarri"]}
+  {"id":"c212","hitza":"bereizgarri","sinonimoak":["ezaugarri"]},
+  {"id":"c213","hitza":"sinestun","sinonimoak":["fededun","sinesle","sinestedun"]},
+  {"id":"c214","hitza":"iskin egin","sinonimoak":["saihestu","itzuri","baztertu"]},
+  {"id":"c215","hitza":"ezmezean egon","sinonimoak":["zalantzan egon"]},
+  {"id":"c216","hitza":"inozo","sinonimoak":["tolesgabe","bakun","inozente"]}
 ];
 
 export const EXTENDED_DATA: WordData[] = [
