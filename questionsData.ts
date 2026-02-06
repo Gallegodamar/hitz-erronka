@@ -98,7 +98,7 @@ export const RAW_DATA: QuizData[] = [
       {"id":27,"pregunta":"Zein Korrikatarako egin zuten “Big Beñat” abestia?","opciones":{"a":"12. Korrikarako","b":"13. Korrikarako","c":"9. Korrikarako","d":"10. Korrikarako"},"respuesta_correcta":"a"},
       {"id":28,"pregunta":"Zein Korrikatarako egin zuten “Zirkorrika” abestia?","opciones":{"a":"18. Korrikarako","b":"20. Korrikarako","c":"19. Korrikarako","d":"21. Korrikarako"},"respuesta_correcta":"b"},
       {"id":29,"pregunta":"Zein Korrikatarako egin zuten “Ongi etorri lagun” abestia?","opciones":{"a":"18. Korrikarako","b":"17. Korrikarako","c":"16. Korrikarako","d":"15. Korrikarako"},"respuesta_correcta":"c"},
-      {"id":30,"pregunta":"Zein Korrikatarako egin zuten “Euskal Herria Korrika” abestia?","opciones":{"a":"8. Korrikarako","b":"9. Korrikarako","c":"10. Korrikarako","d":"11. Korrikarako"},"respuesta_correcta":"b"}
+      {"id":30,"pregunta":"Zein Korrikatarako egin zuten “Euskal Herria Korrika” abestia?","opciones":{"a":"8. Korrikarako","b":"9. Korrikarako","c":"10. Korrikarako","d":"11. Korrikarako"},"respuesta_correcta":"c"}
     ]
   },
   {
