@@ -94,8 +94,8 @@ export const RAW_DATA: QuizData[] = [
       { "id": 23, "pregunta": "Zein izan zen 23. Korrikako kanta?", "opciones": { "a": "Herri bat gara", "b": "Gu gara Korrika", "c": "Euskara Gara", "d": "Harro Herri" }, "respuesta_correcta": "d" },
       { "id": 24, "pregunta": "Zein da 24. Korrikako kanta?", "opciones": { "a": "Kaka Korrika", "b": "Xiberutikan Mendebaldera", "c": "Zuberotik munduko hiriburura", "d": "Klika Korrika" }, "respuesta_correcta": "b" },
       {"id":25,"pregunta":"Zein Korrikatarako egin zuten “Gero bat gaurdanik” abestia?","opciones":{"a":"12. Korrikarako","b":"13. Korrikarako","c":"11. Korrikarako","d":"14. Korrikarako"},"respuesta_correcta":"b"},
-      {"id":26,"pregunta":"Zein Korrikatarako egin zuten “Txis pun, Korrika” abestia?","opciones":{"a":"17. Korrikarako","b":"12. Korrikarako","c":"13. Korrikarako","d":"15. Korrikarako"},"respuesta_correcta":"a"},
-      {"id":27,"pregunta":"Zein Korrikatarako egin zuten “Big Beñat” abestia?","opciones":{"a":"12. Korrikarako","b":"13. Korrikarako","c":"9. Korrikarako","d":"10. Korrikarako"},"respuesta_correcta":"c"},
+      {"id":26,"pregunta":"Zein Korrikatarako egin zuten “Txis pun, Korrika” abestia?","opciones":{"a":"17. Korrikarako","b":"12. Korrikarako","c":"13. Korrikarako","d":"15. Korrikarako"},"respuesta_correcta":"d"},
+      {"id":27,"pregunta":"Zein Korrikatarako egin zuten “Big Beñat” abestia?","opciones":{"a":"12. Korrikarako","b":"13. Korrikarako","c":"9. Korrikarako","d":"10. Korrikarako"},"respuesta_correcta":"a"},
       {"id":28,"pregunta":"Zein Korrikatarako egin zuten “Zirkorrika” abestia?","opciones":{"a":"18. Korrikarako","b":"20. Korrikarako","c":"19. Korrikarako","d":"21. Korrikarako"},"respuesta_correcta":"b"},
       {"id":29,"pregunta":"Zein Korrikatarako egin zuten “Ongi etorri lagun” abestia?","opciones":{"a":"18. Korrikarako","b":"17. Korrikarako","c":"16. Korrikarako","d":"15. Korrikarako"},"respuesta_correcta":"c"},
       {"id":30,"pregunta":"Zein Korrikatarako egin zuten “Euskal Herria Korrika” abestia?","opciones":{"a":"8. Korrikarako","b":"9. Korrikarako","c":"10. Korrikarako","d":"11. Korrikarako"},"respuesta_correcta":"b"}
