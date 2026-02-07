@@ -69,11 +69,11 @@ export const RAW_DATA: QuizData[] = [
   {
     "capitulo": "ABESTIAK",
     "preguntas": [
-      { "id": 1, "pregunta": "Nork abestu zuen 1. Korrikako kanta (1980koa)?", "opciones": { "a": "Maite Idirinek", "b": "Xabier Amurizak", "c": "Xabier Letek", "d": "Lourdes Iriondok" }, "respuesta_correcta": "b" },
-      { "id": 2, "pregunta": "Nork kantatu zuen 2. Korrikako abestia (1982koa)?", "opciones": { "a": "Lou Urangak", "b": "Egan taldeak", "c": "Akelarre taldeak", "d": "Idoia Urangak" }, "respuesta_correcta": "c" },
-      { "id": 3, "pregunta": "Nork abestu zuen 3. Korrikako kanta (1983koa)?", "opciones": { "a": "Idoia Urangak", "b": "Itoiz taldeak", "c": "Lourdes Iriondok", "d": "Egan taldeak" }, "respuesta_correcta": "d" },
-      { "id": 4, "pregunta": "Nork kantatu zituen 4. Korrikako bertsoak (1985ekoa)?", "opciones": { "a": "Lontxo Aburuzak", "b": "Errobi taldeak", "c": "Maite Idirinek", "d": "Idoia Urangak" }, "respuesta_correcta": "a" },
-      { "id": 5, "pregunta": "Nork abestu zuen 5. Korrikako kanta (1987koa)?", "opciones": { "a": "Pantxoa eta Peio taldeak", "b": "Oskorri taldeak", "c": "Idoia Urangak", "d": "Lourdes Iriondok" }, "respuesta_correcta": "b" },
+      { "id": 1, "pregunta": "Nork abestu zuen 1. Korrikako kanta (1980koa)? (izenbururik ez duena)", "opciones": { "a": "Maite Idirinek", "b": "Xabier Amurizak", "c": "Xabier Letek", "d": "Lourdes Iriondok" }, "respuesta_correcta": "b" },
+      { "id": 2, "pregunta": "Nork kantatu zuen 2. Korrikako abestia (1982koa)? (izenbururik ez duena)", "opciones": { "a": "Lou Urangak", "b": "Egan taldeak", "c": "Akelarre taldeak", "d": "Idoia Urangak" }, "respuesta_correcta": "c" },
+      { "id": 3, "pregunta": "Nork abestu zuen 3. Korrikako kanta (1983koa)? (izenbururik ez duena)", "opciones": { "a": "Idoia Urangak", "b": "Itoiz taldeak", "c": "Lourdes Iriondok", "d": "Egan taldeak" }, "respuesta_correcta": "d" },
+      { "id": 4, "pregunta": "Nork kantatu zituen 4. Korrikako bertsoak (1985ekoa)? (izenbururik ez duena)", "opciones": { "a": "Lontxo Aburuzak", "b": "Errobi taldeak", "c": "Maite Idirinek", "d": "Idoia Urangak" }, "respuesta_correcta": "a" },
+      { "id": 5, "pregunta": "Nork abestu zuen 5. Korrikako kanta (1987koa) (izenbururik ez duena)? (izenbururik ez duena)", "opciones": { "a": "Pantxoa eta Peio taldeak", "b": "Oskorri taldeak", "c": "Idoia Urangak", "d": "Lourdes Iriondok" }, "respuesta_correcta": "b" },
       { "id": 6, "pregunta": "Zein izan zen 6. Korrikako kanta?", "opciones": { "a": "Gu AEK-koak gara!", "b": "AEK eta kito!", "c": "AEK onena!", "d": "Gora AEK!" }, "respuesta_correcta": "a" },
       { "id": 7, "pregunta": "Nork kantatu zuen 8. Korrikako abestia (1991koa)?", "opciones": { "a": "Alaitz eta Maider taldeak", "b": "Maixa eta Ixiar taldeak", "c": "Gozategi taldeak", "d": "Irigoien anaiek eta Mikel Erramuspek" }, "respuesta_correcta": "d" },
       { "id": 8, "pregunta": "Zein izan zen 8. Korrikako kanta?", "opciones": { "a": "Korrika urteko onena", "b": "Gora Korrika", "c": "Aide Korrika", "d": "Korrika eta kito!" }, "respuesta_correcta": "c" },
