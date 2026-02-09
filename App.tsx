@@ -35,7 +35,6 @@ const App: React.FC = () => {
   
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
-  const [feedback, setFeedback] = useState<{ isCorrect: boolean; message: string; penaltyApplied: boolean } | null>(null);
   
   const [currentTurnPenalties, setCurrentTurnPenalties] = useState(0);
   const turnStartTimeRef = useRef<number>(0);
@@ -93,7 +92,6 @@ const App: React.FC = () => {
     setCurrentQuestionIndex(0);
     setIsAnswered(false);
     setSelectedAnswer(null);
-    setFeedback(null);
   };
 
   const handlePlayerNameChange = (id: number, name: string) => {
@@ -110,10 +108,8 @@ const App: React.FC = () => {
     setIsAnswered(true);
     if (isCorrect) {
       setPlayers(prev => prev.map((p, idx) => idx === currentPlayerIndex ? { ...p, score: p.score + 1 } : p));
-      setFeedback({ isCorrect: true, message: "Oso ondo! Zuzena da.", penaltyApplied: false });
     } else {
       setCurrentTurnPenalties(prev => prev + 10);
-      setFeedback({ isCorrect: false, message: `Okerra. Zuzena: ${currentQuestion.correctAnswer}`, penaltyApplied: true });
     }
   };
 
@@ -122,7 +118,6 @@ const App: React.FC = () => {
       setCurrentQuestionIndex(prev => prev + 1);
       setIsAnswered(false);
       setSelectedAnswer(null);
-      setFeedback(null);
     } else {
       finishPlayerTurn();
     }
@@ -154,6 +149,11 @@ const App: React.FC = () => {
     }
     return groups;
   }, [dictLevel]);
+
+  const playedWordData = useMemo(() => {
+    return Array.from(new Map<string, WordData>(questionPool.map(q => [q.wordData.hitza, q.wordData])).values())
+      .sort((a, b) => a.hitza.localeCompare(b.hitza));
+  }, [questionPool]);
 
   if (status === GameStatus.DICTIONARY) {
     return (
@@ -284,35 +284,34 @@ const App: React.FC = () => {
 
     return (
       <div className="h-screen flex flex-col items-center p-2 md:p-4 bg-slate-50 overflow-hidden">
-        <div className="w-full max-w-4xl flex justify-between items-center mb-4 gap-2 shrink-0">
-          <div className="flex items-center space-x-3">
-             <div className="bg-indigo-600 text-white px-5 py-2.5 rounded-2xl text-sm font-black shadow-lg uppercase tracking-tight">{currentPlayer.name}</div>
-             <div className="bg-white px-3 py-2 rounded-xl border border-slate-100 flex items-center gap-2 shadow-sm">
-               <span className="text-[10px] font-black text-rose-500 uppercase tracking-tighter leading-none">Zigorra:</span>
+        <div className="w-full max-w-4xl flex justify-between items-center mb-2 gap-2 shrink-0">
+          <div className="flex items-center space-x-2">
+             <div className="bg-indigo-600 text-white px-4 py-2 rounded-2xl text-xs font-black shadow-lg uppercase tracking-tight">{currentPlayer.name}</div>
+             <div className="bg-white px-3 py-1.5 rounded-xl border border-slate-100 flex items-center gap-2 shadow-sm">
+               <span className="text-[8px] font-black text-rose-500 uppercase tracking-tighter leading-none">Zigorra:</span>
                <p className="text-xs text-rose-600 font-black">+{currentTurnPenalties}s</p>
              </div>
           </div>
           <div className="flex gap-2 items-center">
-            <div className="bg-white px-4 py-2 rounded-xl border border-slate-200 flex items-center gap-4">
+            <div className="bg-white px-3 py-1.5 rounded-xl border border-slate-200 flex items-center">
                <div className="text-center">
-                  <p className="text-[8px] text-slate-400 font-black uppercase leading-none mb-0.5">Galdera</p>
-                  <p className="text-indigo-600 font-black text-sm">{currentQuestionIndex + 1}/10</p>
+                  <p className="text-indigo-600 font-black text-xs">{currentQuestionIndex + 1}/10</p>
                </div>
             </div>
-            <button onClick={forceFinishGame} className="bg-rose-100 hover:bg-rose-200 text-rose-700 font-black px-4 py-2 rounded-xl transition-all text-xs uppercase">Amaitu</button>
+            <button onClick={forceFinishGame} className="bg-rose-50 hover:bg-rose-100 text-rose-700 font-black px-3 py-1.5 rounded-xl transition-all text-[10px] uppercase">Amaitu</button>
           </div>
         </div>
-        <div className="bg-white w-full max-w-2xl rounded-[3rem] shadow-xl p-8 md:p-14 mb-2 border border-slate-100 relative overflow-hidden flex flex-col grow min-h-0">
-          <div className="absolute top-0 left-0 w-full h-2.5 bg-slate-100">
+        <div className="bg-white w-full max-w-2xl rounded-[2.5rem] shadow-xl p-6 md:p-10 mb-2 border border-slate-100 relative overflow-hidden flex flex-col grow min-h-0">
+          <div className="absolute top-0 left-0 w-full h-1.5 bg-slate-100">
             <div className="h-full bg-indigo-600 transition-all duration-500" style={{ width: `${((currentQuestionIndex + (isAnswered ? 1 : 0)) / QUESTIONS_PER_PLAYER) * 100}%` }} />
           </div>
-          <div className="text-center mb-10 shrink-0 mt-6">
-            <p className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.4em] mb-4">Sinonimoa aukeratu</p>
-            <h3 className="text-5xl md:text-6xl font-black text-slate-900 break-words leading-none uppercase tracking-tighter">{currentQuestion.wordData.hitza}</h3>
+          <div className="text-center mb-6 shrink-0 mt-2">
+            <p className="text-[9px] font-black text-indigo-400 uppercase tracking-[0.4em] mb-2">Sinonimoa aukeratu</p>
+            <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 break-words leading-none uppercase tracking-tighter">{currentQuestion.wordData.hitza}</h3>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 grow overflow-y-auto pr-1 custom-scrollbar">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 grow min-h-0 overflow-hidden">
             {currentQuestion.options.map((opt, i) => {
-              let buttonStyle = "p-6 rounded-3xl border-2 font-black text-xl md:text-2xl transition-all duration-200 flex items-center justify-center text-center min-h-[6.5rem] ";
+              let buttonStyle = "p-4 md:p-6 rounded-2xl md:rounded-3xl border-2 font-black text-lg md:text-2xl transition-all duration-200 flex items-center justify-center text-center h-full ";
               if (!isAnswered) buttonStyle += "bg-white border-slate-100 hover:border-indigo-500 hover:bg-indigo-50 text-slate-700 cursor-pointer shadow-sm active:translate-y-1";
               else {
                 if (opt === currentQuestion.correctAnswer) buttonStyle += "bg-emerald-500 border-emerald-300 text-white shadow-lg scale-102 z-10";
@@ -324,15 +323,18 @@ const App: React.FC = () => {
               );
             })}
           </div>
-          {isAnswered && (
-            <div className="mt-10 flex flex-col items-center shrink-0">
-               <div className={`mb-5 text-center font-black text-xl flex items-center gap-3 ${feedback?.isCorrect ? 'text-emerald-600' : 'text-rose-600'}`}>
-                 {feedback?.message}
-                 {feedback?.penaltyApplied && <span className="bg-rose-100 text-rose-700 text-xs px-3 py-1 rounded-full italic">+10s</span>}
+          <div className="mt-6 shrink-0 min-h-[4.5rem] flex items-center justify-center">
+            {isAnswered ? (
+               <button onClick={nextQuestion} className="bg-indigo-950 hover:bg-black text-white font-black py-4 px-12 rounded-2xl shadow-xl transition-all active:scale-95 text-lg uppercase tracking-widest">
+                 {currentQuestionIndex < 9 ? "Hurrengoa" : "Txanda bukatu"}
+               </button>
+            ) : (
+               <div className="flex items-center gap-2 text-[10px] font-black text-slate-300 uppercase tracking-widest italic">
+                 <span className="w-2 h-2 bg-slate-200 rounded-full animate-pulse"></span>
+                 Erantzunaren zain...
                </div>
-               <button onClick={nextQuestion} className="bg-indigo-950 hover:bg-black text-white font-black py-5 px-16 rounded-2xl shadow-xl transition-all active:scale-95 text-xl uppercase tracking-widest">{currentQuestionIndex < 9 ? "Hurrengoa" : "Txanda bukatu"}</button>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     );
@@ -343,7 +345,6 @@ const App: React.FC = () => {
         if (b.score !== a.score) return b.score - a.score;
         return a.time - b.time;
       });
-    const playedWordData: WordData[] = Array.from(new Map<string, WordData>(questionPool.map(q => [q.wordData.hitza, q.wordData])).values()).sort((a: WordData, b: WordData) => a.hitza.localeCompare(b.hitza));
 
     return (
       <div className="h-screen flex flex-col items-center justify-center p-2 bg-indigo-950 overflow-hidden">
@@ -352,8 +353,8 @@ const App: React.FC = () => {
             <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight uppercase leading-none">Sailkapena</h2>
             <p className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.4em] mt-3">{difficulty}. Maila</p>
           </div>
-          <div className="grow flex flex-col min-h-0 gap-6 mb-8">
-            <div className="overflow-y-auto rounded-[2.5rem] border border-slate-100 shadow-inner bg-slate-50 flex-1 min-h-[160px] custom-scrollbar">
+          <div className="grow flex flex-col min-h-0 mb-8 overflow-hidden rounded-[2.5rem] border border-slate-100 shadow-inner bg-slate-50">
+            <div className="overflow-y-auto custom-scrollbar h-full">
               <table className="w-full text-left border-collapse">
                 <thead className="sticky top-0 bg-slate-100 z-10 shadow-sm">
                   <tr>
@@ -363,50 +364,79 @@ const App: React.FC = () => {
                     <th className="px-6 py-4 text-[11px] font-black text-slate-500 uppercase text-right">Denbora</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-200 bg-white font-bold">
+                <tbody className="divide-y divide-slate-200 bg-white">
                   {sortedPlayers.map((p, idx) => (
                     <tr key={p.id} className={idx === 0 ? "bg-amber-50" : "hover:bg-slate-50 transition-colors"}>
-                      <td className="px-6 py-5 font-black text-3xl">{idx === 0 ? "🥇" : idx === 1 ? "🥈" : idx === 2 ? "🥉" : `${idx + 1}.`}</td>
-                      <td className="px-6 py-5"><span className="text-slate-800 text-xl uppercase tracking-tight">{p.name}</span></td>
-                      <td className="px-6 py-5 text-center"><span className="bg-indigo-600 text-white px-4 py-1.5 rounded-xl font-black text-sm shadow-md">{p.score}</span></td>
-                      <td className="px-6 py-5 text-right font-mono text-slate-500 text-base">{p.time.toFixed(2)}s</td>
+                      <td className="px-6 py-5 font-black text-2xl">{idx === 0 ? "🥇" : idx === 1 ? "🥈" : idx === 2 ? "🥉" : `${idx + 1}.`}</td>
+                      <td className="px-6 py-5">
+                        <span className="text-slate-800 text-sm md:text-base font-bold uppercase tracking-tight">{p.name}</span>
+                      </td>
+                      <td className="px-6 py-5 text-center">
+                        <span className="bg-indigo-600 text-white px-3 py-1 rounded-xl font-black text-xs shadow-md">{p.score}</span>
+                      </td>
+                      <td className="px-6 py-5 text-right font-mono text-slate-500 text-xs md:text-sm">{p.time.toFixed(2)}s</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-            <div className="flex-[1.2] min-h-[220px] flex flex-col rounded-[2.5rem] border border-indigo-50 bg-indigo-50/30 overflow-hidden shadow-inner">
-               <div className="bg-indigo-600 py-4 px-8 flex justify-between items-center shrink-0">
-                  <h3 className="text-xs font-black text-white uppercase tracking-widest">Hiztegiaren berrikuspena</h3>
-                  <span className="text-[10px] font-bold text-indigo-100 italic">Ikusteko klikatu hitzean</span>
-               </div>
-               <div className="grow overflow-y-auto p-5 custom-scrollbar text-left">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {playedWordData.map((data, idx) => (
-                      <div key={idx} className="bg-white p-5 rounded-3xl border border-indigo-100 shadow-sm hover:shadow-md transition-shadow">
-                        <div className="flex items-center gap-2 mb-3">
-                           <a href={`https://hiztegiak.elhuyar.eus/eu/${data.hitza}`} target="_blank" rel="noopener noreferrer" className="text-indigo-900 font-black text-xl hover:underline decoration-indigo-300 underline-offset-4">{data.hitza}</a>
-                        </div>
-                        <div className="flex flex-wrap gap-2 items-center">
-                           <span className="text-[10px] font-black text-indigo-300 uppercase mr-1">Sinonimoak:</span>
-                           {data.sinonimoak.map((sin, sIdx) => (
-                             <a key={sIdx} href={`https://hiztegiak.elhuyar.eus/eu/${sin}`} target="_blank" rel="noopener noreferrer" className="bg-indigo-50 text-indigo-600 px-3 py-1.5 rounded-xl font-bold text-[11px] hover:bg-indigo-600 hover:text-white transition-all border border-indigo-100/50">{sin}</a>
-                           ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-               </div>
-            </div>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 shrink-0 mt-2">
-            <button onClick={() => { setPlayers(players.map(p => ({...p, score: 0, time: 0}))); startNewGame(); }} className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-black py-5 rounded-2xl shadow-xl transition-all active:scale-95 text-lg uppercase tracking-widest">BERRIRO JOKATU</button>
-            <button onClick={() => setStatus(GameStatus.SETUP)} className="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-600 font-black py-5 rounded-2xl transition-all active:scale-95 text-lg uppercase tracking-widest">HASIERA</button>
+          <div className="flex flex-col gap-3 shrink-0">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <button onClick={() => { setPlayers(players.map(p => ({...p, score: 0, time: 0}))); startNewGame(); }} className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-black py-4 rounded-2xl shadow-xl transition-all active:scale-95 text-base uppercase tracking-widest">BERRIRO JOKATU</button>
+              <button onClick={() => setStatus(GameStatus.REVIEW)} className="flex-1 bg-white hover:bg-slate-50 text-indigo-600 font-black py-4 rounded-2xl shadow-md transition-all active:scale-95 text-sm uppercase tracking-widest border border-indigo-100">AGERTUTAKO HITZAK</button>
+            </div>
+            <button onClick={() => setStatus(GameStatus.SETUP)} className="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-black py-4 rounded-2xl transition-all active:scale-95 text-sm uppercase tracking-widest">HASIERA</button>
           </div>
         </div>
       </div>
     );
   }
+
+  if (status === GameStatus.REVIEW) {
+    return (
+      <div className="h-screen flex flex-col items-center justify-center p-2 bg-slate-900 overflow-hidden">
+        <div className="bg-white w-full max-w-4xl rounded-[3rem] shadow-2xl p-6 md:p-8 flex flex-col max-h-[95vh] border-2 border-white/20">
+          <div className="flex justify-between items-center mb-6 shrink-0">
+            <button onClick={() => setStatus(GameStatus.SUMMARY)} className="bg-slate-100 hover:bg-slate-200 text-slate-600 px-4 py-2 rounded-xl font-black text-xs uppercase transition-all">
+              ← Sailkapenera
+            </button>
+            <div className="text-center">
+              <h2 className="text-xl md:text-2xl font-black text-indigo-950 uppercase leading-none">Agertutako Hitzak</h2>
+              <p className="text-[10px] font-bold text-slate-400 mt-1 uppercase">Partidako berrikuspena</p>
+            </div>
+            <div className="w-24"></div>
+          </div>
+
+          <div className="grow overflow-y-auto pr-2 custom-scrollbar min-h-0 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-1">
+              {playedWordData.map((data, idx) => (
+                <div key={idx} className="bg-slate-50 p-5 rounded-3xl border border-indigo-50 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-[10px] font-black bg-white text-indigo-400 px-2 py-0.5 rounded-lg border border-indigo-50">#{idx + 1}</span>
+                    <a href={`https://hiztegiak.elhuyar.eus/eu/${data.hitza}`} target="_blank" rel="noopener noreferrer" className="text-indigo-950 font-black text-xl hover:underline decoration-indigo-300 underline-offset-4 uppercase tracking-tighter">
+                      {data.hitza}
+                    </a>
+                  </div>
+                  <div className="flex flex-wrap gap-2 items-center">
+                    {data.sinonimoak.map((sin, sIdx) => (
+                      <a key={sIdx} href={`https://hiztegiak.elhuyar.eus/eu/${sin}`} target="_blank" rel="noopener noreferrer" className="bg-white text-indigo-600 px-3 py-1.5 rounded-xl font-bold text-xs hover:bg-indigo-600 hover:text-white transition-all border border-indigo-100">
+                        {sin}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="shrink-0 pt-2 border-t border-slate-100">
+            <button onClick={() => setStatus(GameStatus.SUMMARY)} className="w-full bg-indigo-600 text-white font-black py-4 rounded-2xl shadow-lg uppercase tracking-widest text-sm active:scale-95 transition-all">Sailkapenera Itzuli</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return null;
 };
 
