@@ -12,7 +12,6 @@ import { LEVEL_4_PART_1 } from './data_l4_1';
 import { LEVEL_4_PART_2 } from './data_l4_2';
 import { LEVEL_4_PART_3 } from './data_l4_3';
 import { LEVEL_4_PART_4 } from './data_l4_4';
-import { LEVEL_4_PART_5 } from './data_l4_5';
 
 // 1. Mailako datu guztiak batzen ditugu
 export const LEVEL_1_DATA: WordData[] = [
@@ -40,8 +39,7 @@ export const LEVEL_4_DATA: WordData[] = [
   ...LEVEL_4_PART_1,
   ...LEVEL_4_PART_2,
   ...LEVEL_4_PART_3,
-  ...LEVEL_4_PART_4,
-  ...LEVEL_4_PART_5
+  ...LEVEL_4_PART_4
 ];
 
 export const LEVEL_DATA: Record<DifficultyLevel, WordData[]> = {
@@ -56,5 +54,5 @@ export {
   LEVEL_1_PART_1, LEVEL_1_PART_2, LEVEL_1_PART_3, 
   LEVEL_2_PART_1, LEVEL_2_PART_2, LEVEL_2_PART_3,
   LEVEL_3_PART_1, LEVEL_3_PART_2, LEVEL_3_PART_3,
-  LEVEL_4_PART_1, LEVEL_4_PART_2, LEVEL_4_PART_3, LEVEL_4_PART_4, LEVEL_4_PART_5
+  LEVEL_4_PART_1, LEVEL_4_PART_2, LEVEL_4_PART_3, LEVEL_4_PART_4
 };
