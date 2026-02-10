@@ -1,3 +1,4 @@
+
 import { WordData, DifficultyLevel } from './types';
 import { LEVEL_1_PART_1 } from './data_l1_1';
 import { LEVEL_1_PART_2 } from './data_l1_2';
@@ -13,28 +14,24 @@ import { LEVEL_4_PART_2 } from './data_l4_2';
 import { LEVEL_4_PART_3 } from './data_l4_3';
 import { LEVEL_4_PART_4 } from './data_l4_4';
 
-// 1. Mailako datu guztiak batzen ditugu
 export const LEVEL_1_DATA: WordData[] = [
   ...LEVEL_1_PART_1,
   ...LEVEL_1_PART_2,
   ...LEVEL_1_PART_3
 ];
 
-// 2. Mailako datu guztiak batzen ditugu
 export const LEVEL_2_DATA: WordData[] = [
   ...LEVEL_2_PART_1,
   ...LEVEL_2_PART_2,
   ...LEVEL_2_PART_3
 ];
 
-// 3. Mailako datu guztiak batzen ditugu
 export const LEVEL_3_DATA: WordData[] = [
   ...LEVEL_3_PART_1,
   ...LEVEL_3_PART_2,
   ...LEVEL_3_PART_3
 ];
 
-// 4. Mailako datu guztiak batzen ditugu
 export const LEVEL_4_DATA: WordData[] = [
   ...LEVEL_4_PART_1,
   ...LEVEL_4_PART_2,
@@ -49,7 +46,6 @@ export const LEVEL_DATA: Record<DifficultyLevel, WordData[]> = {
   4: LEVEL_4_DATA
 };
 
-// Re-exportamos para compatibilidad si fuera necesario
 export { 
   LEVEL_1_PART_1, LEVEL_1_PART_2, LEVEL_1_PART_3, 
   LEVEL_2_PART_1, LEVEL_2_PART_2, LEVEL_2_PART_3,

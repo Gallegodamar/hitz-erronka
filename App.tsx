@@ -4,7 +4,6 @@ import { LEVEL_DATA } from './data';
 import { WordData, Player, Question, GameStatus, DifficultyLevel } from './types';
 
 const QUESTIONS_PER_PLAYER = 10;
-const DICT_PAGE_SIZE = 20;
 
 const shuffleArray = <T,>(array: T[]): T[] => {
   const newArr = [...array];
@@ -38,10 +37,6 @@ const App: React.FC = () => {
   
   const [currentTurnPenalties, setCurrentTurnPenalties] = useState(0);
   const turnStartTimeRef = useRef<number>(0);
-
-  // Dictionary pagination/filtering
-  const [dictLevel, setDictLevel] = useState<DifficultyLevel>(1);
-  const [dictPage, setDictPage] = useState(0);
 
   // Sync players array when numPlayers changes in SETUP
   useEffect(() => {
@@ -140,84 +135,10 @@ const App: React.FC = () => {
     setStatus(GameStatus.SUMMARY);
   };
 
-  // Grouped dictionary by 20 words per page
-  const dictGroups = useMemo(() => {
-    const source = LEVEL_DATA[dictLevel];
-    const groups = [];
-    for (let i = 0; i < source.length; i += DICT_PAGE_SIZE) {
-      groups.push(source.slice(i, i + DICT_PAGE_SIZE));
-    }
-    return groups;
-  }, [dictLevel]);
-
   const playedWordData = useMemo(() => {
     return Array.from(new Map<string, WordData>(questionPool.map(q => [q.wordData.hitza, q.wordData])).values())
       .sort((a, b) => a.hitza.localeCompare(b.hitza));
   }, [questionPool]);
-
-  if (status === GameStatus.DICTIONARY) {
-    return (
-      <div className="h-screen flex flex-col items-center justify-center p-2 bg-slate-900 overflow-hidden">
-        <div className="bg-white w-full max-w-4xl rounded-[2.5rem] shadow-2xl p-6 md:p-8 flex flex-col max-h-[95vh] border-2 border-white/20">
-          <div className="flex justify-between items-center mb-6 shrink-0">
-            <button onClick={() => setStatus(GameStatus.SETUP)} className="bg-slate-100 hover:bg-slate-200 text-slate-600 px-4 py-2 rounded-xl font-black text-xs uppercase transition-all">
-              ← Atzera
-            </button>
-            <div className="text-center">
-              <h2 className="text-xl md:text-2xl font-black text-indigo-950 uppercase leading-none">Hiztegia</h2>
-              <p className="text-[10px] font-bold text-slate-400 mt-1 uppercase">20ko taldeak</p>
-            </div>
-            <div className="w-16"></div>
-          </div>
-
-          <div className="grid grid-cols-4 gap-2 mb-6 shrink-0 bg-slate-50 p-2 rounded-2xl border border-slate-100">
-            {([1, 2, 3, 4] as DifficultyLevel[]).map(d => (
-              <button key={d} onClick={() => { setDictLevel(d); setDictPage(0); }} className={`py-2 rounded-xl font-black text-sm transition-all ${dictLevel === d ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-600'}`}>
-                {d}. Maila
-              </button>
-            ))}
-          </div>
-
-          <div className="grow overflow-y-auto pr-2 custom-scrollbar mb-6 min-h-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {dictGroups[dictPage]?.map((word, idx) => (
-                <div key={idx} className="bg-slate-50 p-4 rounded-2xl border border-slate-100 hover:border-indigo-200 transition-colors shadow-sm">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-[10px] font-black bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-lg uppercase">
-                      #{dictPage * DICT_PAGE_SIZE + idx + 1}
-                    </span>
-                    <a href={`https://hiztegiak.elhuyar.eus/eu/${word.hitza}`} target="_blank" rel="noopener noreferrer" className="text-lg font-black text-slate-800 uppercase tracking-tight hover:underline decoration-indigo-300 underline-offset-2">
-                      {word.hitza}
-                    </a>
-                  </div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {word.sinonimoak.map((s, si) => (
-                      <a key={si} href={`https://hiztegiak.elhuyar.eus/eu/${s}`} target="_blank" rel="noopener noreferrer" className="bg-white text-indigo-600 px-2.5 py-1 rounded-lg border border-indigo-50 font-bold text-xs hover:bg-indigo-600 hover:text-white transition-all shadow-sm">
-                        {s}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex justify-between items-center bg-slate-50 p-4 rounded-2xl border border-slate-100 shrink-0">
-            <button disabled={dictPage === 0} onClick={() => setDictPage(p => p - 1)} className="p-2 disabled:opacity-30 disabled:cursor-not-allowed bg-white rounded-xl shadow-sm">
-              <svg className="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M15 19l-7-7 7-7" /></svg>
-            </button>
-            <div className="text-center">
-              <p className="text-[10px] font-black text-slate-400 uppercase leading-none mb-1">Taldea</p>
-              <p className="text-indigo-600 font-black text-sm">{dictPage + 1} / {Math.max(1, dictGroups.length)}</p>
-            </div>
-            <button disabled={dictPage >= dictGroups.length - 1} onClick={() => setDictPage(p => p + 1)} className="p-2 disabled:opacity-30 disabled:cursor-not-allowed bg-white rounded-xl shadow-sm">
-              <svg className="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M9 5l7 7-7 7" /></svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   if (status === GameStatus.SETUP) {
     return (
@@ -255,7 +176,6 @@ const App: React.FC = () => {
           </div>
           <div className="flex flex-col gap-3 shrink-0">
             <button onClick={startNewGame} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-black py-5 rounded-2xl transition-all shadow-xl active:scale-95 text-xl uppercase tracking-widest">HASI JOKOA</button>
-            <button onClick={() => setStatus(GameStatus.DICTIONARY)} className="w-full bg-slate-100 hover:bg-slate-200 text-indigo-600 font-black py-4 rounded-2xl transition-all text-sm uppercase tracking-widest border border-slate-200">IKUSI SINONIMOAK</button>
           </div>
         </div>
       </div>
