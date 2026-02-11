@@ -19,5 +19,7 @@ export const LEVEL_1_PART_3: WordData[] = [
   {"id": "1-214", "hitza": "iskin egin", "sinonimoak": ["saihestu", "itzuri", "baztertu"]},
   {"id": "1-215", "hitza": "ezmezean egon", "sinonimoak": ["zalantzan egon"]},
   {"id": "1-216", "hitza": "inozo", "sinonimoak": ["tolesgabe", "bakun", "inozente"]},
-  {"id": "1-217", "hitza": "eskatu", "sinonimoak": ["galdegin", "galdatu"]}
+  {"id": "1-217", "hitza": "eskatu", "sinonimoak": ["galdegin", "galdatu"]},
+  {"id": "1-218","hitza":"eskeleto","sinonimoak":["hezurdura"]}
 ];
+
