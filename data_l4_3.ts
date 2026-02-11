@@ -38,7 +38,6 @@ export const LEVEL_4_PART_3: WordData[] = [
   {"id": "4-235", "hitza": "usu", "sinonimoak": ["maiz", "askotan", "sarri"]},
   {"id": "4-236", "hitza": "utikan", "sinonimoak": ["alde", "ospa", "hanka"]},
   {"id": "4-237", "hitza": "uxaldu", "sinonimoak": ["zimeldu", "ihartu", "faundu"]},
-  {"id": "4-238", "hitza": "uxatu", "sinonimoak": ["izutu", "ikaratu", "beldurtu"]},
   {"id": "4-239", "hitza": "uxter", "sinonimoak": ["samur", "bigun", "guri"]},
   {"id": "4-240", "hitza": "uxuka-muxuka", "sinonimoak": ["txutxu-mutxuka", "xuxurlaka", "murmurioka"]},
   {"id": "4-241", "hitza": "uzkaili", "sinonimoak": ["irauli"]},
@@ -101,4 +100,5 @@ export const LEVEL_4_PART_3: WordData[] = [
   {"id": "4-298", "hitza": "zaflada", "sinonimoak": ["zaplazteko", "masaileko", "belarrondoko"]},
   {"id": "4-299", "hitza": "zaildu", "sinonimoak": ["gogortu", "laztu"]},
   {"id": "4-300", "hitza": "zakil", "sinonimoak": ["kikirrio", "armegain", "buztan", "armagi"]}
+
 ];
