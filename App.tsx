@@ -146,6 +146,17 @@ const parseSynonyms = (value: unknown): string[] => {
   return rawValue.split(/[;,|\n]/).map((item) => item.trim()).filter(Boolean);
 };
 
+const PLACEHOLDER_TERM_PATTERNS: RegExp[] = [
+  /^proba[_\s-]*hitza(?:[_\s-]*\d+)?$/i,
+  /^test[_\s-]*word(?:[_\s-]*\d+)?$/i,
+];
+
+const isPlaceholderTerm = (value: string): boolean => {
+  const normalized = value.trim().toLowerCase();
+  if (!normalized) return false;
+  return PLACEHOLDER_TERM_PATTERNS.some((pattern) => pattern.test(normalized));
+};
+
 const parseDifficultyLevel = (value: unknown): DifficultyLevel | null => {
   const parsed = Number(value);
   if (Number.isInteger(parsed) && parsed >= 1 && parsed <= 4) {
@@ -164,13 +175,13 @@ const isRowLevelSecurityError = (error: DbErrorLike | null): boolean => {
 
 const normalizeWordRow = (row: Record<string, unknown>, index: number): SupabaseWordData | null => {
   const hitza = toStringValue(getFirstValue(row, WORD_KEY_CANDIDATES));
-  if (!hitza) return null;
+  if (!hitza || isPlaceholderTerm(hitza)) return null;
 
   const normalizedSynonyms = Array.from(
     new Set(
       parseSynonyms(getFirstValue(row, SYNONYM_KEY_CANDIDATES))
         .map((item) => item.trim())
-        .filter((item) => item.length > 0 && item.toLowerCase() !== hitza.toLowerCase())
+        .filter((item) => item.length > 0 && item.toLowerCase() !== hitza.toLowerCase() && !isPlaceholderTerm(item))
     )
   );
   if (normalizedSynonyms.length === 0) return null;
@@ -340,12 +351,17 @@ const App: React.FC = () => {
         new Set(
           parseSynonyms(newSynonymsInput)
             .map((item) => item.trim())
-            .filter((item) => item.length > 0 && item.toLowerCase() !== hitza.toLowerCase())
+            .filter((item) => item.length > 0 && item.toLowerCase() !== hitza.toLowerCase() && !isPlaceholderTerm(item))
         )
       );
 
       if (!hitza) {
         setWordSaveFeedback({ type: 'error', message: 'Hitza derrigorrezkoa da.' });
+        return;
+      }
+
+      if (isPlaceholderTerm(hitza)) {
+        setWordSaveFeedback({ type: 'error', message: 'Probako hitza dirudi. Sartu benetako hitz bat.' });
         return;
       }
 
@@ -382,7 +398,7 @@ const App: React.FC = () => {
           new Set(
             [...existingWord.sinonimoak, hitza, ...normalizedSynonyms]
               .map((item) => item.trim())
-              .filter((item) => item.length > 0 && item.toLowerCase() !== existingWord.hitza.toLowerCase())
+              .filter((item) => item.length > 0 && item.toLowerCase() !== existingWord.hitza.toLowerCase() && !isPlaceholderTerm(item))
           )
         );
 
@@ -856,6 +872,7 @@ const App: React.FC = () => {
       id: player.id,
       name: player.name,
       points: player.score,
+      time: player.time,
     }));
     const tablePlayers = sortedPlayers.slice(3);
     const tableStartRank = podiumPlayers.length + 1;
