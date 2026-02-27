@@ -3,7 +3,7 @@
 <html lang="eu">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#4f46e5" />
     
     <!-- iOS PWA meta tags -->
@@ -20,17 +20,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     
     <style>
+      :root {
+        --sat: env(safe-area-inset-top);
+        --sab: env(safe-area-inset-bottom);
+        --sal: env(safe-area-inset-left);
+        --sar: env(safe-area-inset-right);
+      }
       body {
         font-family: 'Inter', sans-serif;
         background-color: #f8fafc;
         margin: 0;
         padding: 0;
-        height: 100vh;
+        height: 100dvh;
         width: 100vw;
         overflow: hidden;
+        line-height: 1.4;
+        -webkit-tap-highlight-color: transparent;
       }
+      button,
+      a,
+      input,
+      textarea,
+      select {
+        touch-action: manipulation;
+      }
+      button:focus-visible,
+      a:focus-visible,
+      input:focus-visible {
+        outline: 3px solid #4f46e5;
+        outline-offset: 2px;
+      }
+      .safe-pt { padding-top: var(--sat); }
+      .safe-pb { padding-bottom: var(--sab); }
+      .safe-px { padding-left: var(--sal); padding-right: var(--sar); }
+      
       .custom-scrollbar::-webkit-scrollbar {
-        width: 6px;
+        width: 4px;
       }
       .custom-scrollbar::-webkit-scrollbar-track {
         background: transparent;
@@ -41,35 +66,28 @@
       }
       input[type=range]::-webkit-slider-thumb {
         -webkit-appearance: none;
-        height: 20px;
-        width: 20px;
+        height: 24px;
+        width: 24px;
         border-radius: 50%;
         background: #4f46e5;
         cursor: pointer;
+        border: 4px solid white;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
       }
     </style>
-    <script type="importmap">
-    {
-      "imports": {
-        "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-        "react/": "https://esm.sh/react@^19.2.3/",
-        "react": "https://esm.sh/react@^19.2.3"
-      }
-    }
-    </script>
-    <!-- Entrada principal de la aplicación -->
-    <script type="module" src="index.tsx"></script>
     <script>
-      if ('serviceWorker' in navigator) {
+      const isLocalhost = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+      if ('serviceWorker' in navigator && !isLocalhost) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('sw.js')
+          navigator.serviceWorker.register('/sw.js')
             .then(reg => console.log('SW OK'))
             .catch(err => console.log('SW Error', err));
         });
       }
     </script>
-  </head>
+</head>
   <body>
     <div id="root"></div>
-  </body>
+  <script type="module" src="/index.tsx"></script>
+</body>
 </html>

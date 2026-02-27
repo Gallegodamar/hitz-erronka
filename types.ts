@@ -22,6 +22,7 @@ export type DifficultyLevel = 1 | 2 | 3 | 4;
 
 export enum GameStatus {
   SETUP = 'SETUP',
+  WORDS_MANAGER = 'WORDS_MANAGER',
   INTERMISSION = 'INTERMISSION',
   PLAYING = 'PLAYING',
   SUMMARY = 'SUMMARY',
