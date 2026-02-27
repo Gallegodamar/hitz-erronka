@@ -56,3 +56,8 @@
 [2m17:48:57[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/App.tsx[22m
 [2m17:52:16[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/Podium.tsx[22m
 [2m17:52:37[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/Podium.css[22m
+[2m18:12:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2mindex.html[22m
+[2m18:13:42[22m [36m[1m[vite][22m[39m [32mvite.config.ts changed, restarting server...[39m
+[2m18:13:43[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m Re-optimizing dependencies because lockfile has changed
+[2m18:13:43[22m [36m[1m[vite][22m[39m server restarted.
+[2m18:13:55[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2mindex.html[22m
