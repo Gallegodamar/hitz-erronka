@@ -12,7 +12,7 @@ const WORD_KEY_CANDIDATES = ['hitza', 'word', 'term', 'name'];
 const SYNONYM_KEY_CANDIDATES = ['sinonimoak', 'synonyms', 'sinonimoak_json', 'synonym_list'];
 const LEVEL_KEY_CANDIDATES = ['difficulty', 'level', 'maila', 'zailtasuna'];
 const ID_KEY_CANDIDATES = ['id', 'word_id', 'uuid'];
-const PLAYER_FIRST_NAMES = ['Justina', 'Jordi', 'Javier', 'Arantxa', 'Dana', 'Haizea', 'David', 'Unai', 'Jon', 'Mertxe'];
+const PLAYER_FIRST_NAMES = ['Justina', 'Jordi', 'Javier', 'Arantxa', 'Dana', 'Haizea', 'David', 'Unai', 'Jon', 'Aida'];
 const PLAYER_LAST_NAMES = [
   'Ohoin',
   'Mazala',
@@ -31,6 +31,7 @@ const PLAYER_LAST_NAMES = [
   'Txera',
   'Lili',
   'Tato',
+  'Kimu',
 ];
 const PLAYER_EMOJIS = [
   '\u{1F600}',
@@ -984,6 +985,7 @@ const App: React.FC = () => {
 };
 
 export default App;
+
 
 
 
