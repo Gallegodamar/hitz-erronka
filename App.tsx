@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { supabase, isSupabaseConfigured, wordsTable } from './supabaseClient';
 import { WordData, Player, Question, GameStatus, DifficultyLevel } from './types';
+import Podium, { PodiumPlayer } from './Podium';
 
 const QUESTIONS_PER_PLAYER = 10;
 const MAX_PLAYERS = 10;
@@ -12,9 +13,47 @@ const SYNONYM_KEY_CANDIDATES = ['sinonimoak', 'synonyms', 'sinonimoak_json', 'sy
 const LEVEL_KEY_CANDIDATES = ['difficulty', 'level', 'maila', 'zailtasuna'];
 const ID_KEY_CANDIDATES = ['id', 'word_id', 'uuid'];
 const PLAYER_FIRST_NAMES = ['Justina', 'Jordi', 'Javier', 'Arantxa', 'Dana', 'Haizea', 'David', 'Unai', 'Jon', 'Mertxe'];
-const PLAYER_LAST_NAMES = ['Ohoin', 'Mazala', 'Oski', 'Karan', 'Alproja', 'Uraza', 'Abao', 'Dema', 'Fitsik', 'Bolu'];
-const PLAYER_EMOJIS = ['😀', '😎', '🤠', '🤖', '🦊', '🐼', '🐙', '⚡', '🔥', '🚀'];
-
+const PLAYER_LAST_NAMES = [
+  'Ohoin',
+  'Mazala',
+  'Oski',
+  'Karan',
+  'Alproja',
+  'Uraza',
+  'Abao',
+  'Dema',
+  'Fitsik',
+  'Bolu',
+  'Elai',
+  'Enara',
+  'Jite',
+  'Apukoa',
+  'Txera',
+  'Lili',
+  'Tato',
+];
+const PLAYER_EMOJIS = [
+  '\u{1F600}',
+  '\u{1F60E}',
+  '\u{1F920}',
+  '\u{1F916}',
+  '\u{1F98A}',
+  '\u{1F43C}',
+  '\u{1F419}',
+  '\u{26A1}',
+  '\u{1F525}',
+  '\u{1F680}',
+  '\u{1F984}',
+  '\u{1F43A}',
+  '\u{1F981}',
+  '\u{1F47E}',
+  '\u{1F31F}',
+  '\u{1F308}',
+  '\u{1F4A5}',
+  '\u{1F389}',
+  '\u{1F9E0}',
+  '\u{1F47D}',
+];
 interface SupabaseWordData extends WordData {
   level: DifficultyLevel | null;
 }
@@ -813,6 +852,13 @@ const App: React.FC = () => {
         if (b.score !== a.score) return b.score - a.score;
         return a.time - b.time;
       });
+    const podiumPlayers: PodiumPlayer[] = sortedPlayers.slice(0, 3).map((player) => ({
+      id: player.id,
+      name: player.name,
+      points: player.score,
+    }));
+    const tablePlayers = sortedPlayers.slice(3);
+    const tableStartRank = podiumPlayers.length + 1;
 
     return (
       <div className="h-[100dvh] w-full flex flex-col items-center justify-center bg-indigo-950 overflow-hidden safe-pt safe-pb safe-px p-4">
@@ -820,6 +866,14 @@ const App: React.FC = () => {
           <div className="mb-6 shrink-0 text-center">
             <h2 className="text-2xl md:text-3xl font-black text-slate-900 uppercase">Sailkapena</h2>
             <p className="text-xs font-black text-indigo-400 uppercase tracking-widest mt-1">{difficulty}. Maila</p>
+          </div>
+
+          <div className="mb-4 shrink-0">
+            <Podium
+              players={podiumPlayers}
+              title="Podioa"
+              ariaLabel="Podioa, hiru jokalari onenak"
+            />
           </div>
           
           <div className="grow overflow-hidden rounded-2xl border border-slate-100 shadow-inner bg-slate-50 mb-6 flex flex-col">
@@ -834,16 +888,24 @@ const App: React.FC = () => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-200 bg-white">
-                  {sortedPlayers.map((p, idx) => (
-                    <tr key={p.id} className={idx === 0 ? "bg-amber-50" : ""}>
-                      <td className="px-4 py-3.5 font-black text-lg">{`${idx + 1}.`}</td>
-                      <td className="px-4 py-3.5 font-bold text-slate-800 text-sm uppercase tracking-tight">{p.name}</td>
-                      <td className="px-4 py-3.5 text-center">
-                        <span className="bg-indigo-600 text-white px-2 py-0.5 rounded-lg font-black text-xs">{p.score}</span>
+                  {tablePlayers.length > 0 ? (
+                    tablePlayers.map((p, idx) => (
+                      <tr key={p.id}>
+                        <td className="px-4 py-3.5 font-black text-lg">{`${tableStartRank + idx}.`}</td>
+                        <td className="px-4 py-3.5 font-bold text-slate-800 text-sm uppercase tracking-tight">{p.name}</td>
+                        <td className="px-4 py-3.5 text-center">
+                          <span className="bg-indigo-600 text-white px-2 py-0.5 rounded-lg font-black text-xs">{p.score}</span>
+                        </td>
+                        <td className="px-4 py-3.5 text-right font-mono text-slate-500 text-xs">{p.time.toFixed(1)}s</td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan={4} className="px-4 py-6 text-center text-xs font-black uppercase tracking-widest text-slate-400">
+                        Podioan daude jokalari guztiak
                       </td>
-                      <td className="px-4 py-3.5 text-right font-mono text-slate-500 text-xs">{p.time.toFixed(1)}s</td>
                     </tr>
-                  ))}
+                  )}
                 </tbody>
               </table>
             </div>
@@ -905,5 +967,6 @@ const App: React.FC = () => {
 };
 
 export default App;
+
 
 
