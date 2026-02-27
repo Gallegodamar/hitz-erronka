@@ -152,7 +152,7 @@ const App: React.FC = () => {
   const [status, setStatus] = useState<GameStatus>(GameStatus.SETUP);
   const [difficulty, setDifficulty] = useState<DifficultyLevel>(1);
   const [setupPlayers, setSetupPlayers] = useState<Player[]>(() => generateSetupPlayers());
-  const [selectedPlayerIds, setSelectedPlayerIds] = useState<number[]>([0, 1]);
+  const [selectedPlayerIds, setSelectedPlayerIds] = useState<number[]>([]);
   const [players, setPlayers] = useState<Player[]>([]);
   
   const [questionPool, setQuestionPool] = useState<Question[]>([]);
@@ -177,7 +177,7 @@ const App: React.FC = () => {
   useEffect(() => {
     if (status === GameStatus.SETUP) {
       setSetupPlayers(generateSetupPlayers());
-      setSelectedPlayerIds([0, 1]);
+      setSelectedPlayerIds([]);
     }
   }, [status]);
 
