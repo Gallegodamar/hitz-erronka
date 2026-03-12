@@ -1,0 +1,23 @@
+﻿src/App.tsx(15,12): error TS2503: Cannot find namespace 'React'.
+src/components/players/PlayerRoster.tsx(5,28): error TS2503: Cannot find namespace 'React'.
+src/components/players/PlayerRoster.tsx(58,48): error TS7006: Parameter 'event' implicitly has an 'any' type.
+src/screens/AnalyticsScreen.tsx(9,31): error TS2503: Cannot find namespace 'React'.
+src/screens/GameplayScreen.tsx(9,30): error TS2503: Cannot find namespace 'React'.
+src/screens/IntermissionScreen.tsx(7,34): error TS2503: Cannot find namespace 'React'.
+src/screens/ReviewScreen.tsx(9,28): error TS2503: Cannot find namespace 'React'.
+src/screens/ReviewScreen.tsx(61,53): error TS2339: Property 'hitza' does not exist on type 'string'.
+src/screens/ReviewScreen.tsx(68,97): error TS2339: Property 'hitza' does not exist on type 'string'.
+src/screens/ReviewScreen.tsx(73,56): error TS2339: Property 'hitza' does not exist on type 'string'.
+src/screens/ReviewScreen.tsx(89,48): error TS2339: Property 'sinonimoak' does not exist on type 'string'.
+src/screens/ReviewScreen.tsx(89,64): error TS7006: Parameter 'synonym' implicitly has an 'any' type.
+src/screens/ReviewScreen.tsx(91,63): error TS2339: Property 'hitza' does not exist on type 'string'.
+src/screens/SetupScreen.tsx(13,27): error TS2503: Cannot find namespace 'React'.
+src/screens/SummaryScreen.tsx(10,29): error TS2503: Cannot find namespace 'React'.
+src/screens/WordsManagerScreen.tsx(23,34): error TS2503: Cannot find namespace 'React'.
+src/screens/WordsManagerScreen.tsx(56,46): error TS2503: Cannot find namespace 'React'.
+src/screens/WordsManagerScreen.tsx(69,17): error TS2339: Property 'validSynonyms' does not exist on type 'string[]'.
+src/screens/WordsManagerScreen.tsx(69,32): error TS2339: Property 'droppedCount' does not exist on type 'string[]'.
+src/screens/WordsManagerScreen.tsx(69,81): error TS2554: Expected 1 arguments, but got 2.
+src/screens/WordsManagerScreen.tsx(82,38): error TS7006: Parameter 'sy' implicitly has an 'any' type.
+src/screens/WordsManagerScreen.tsx(101,21): error TS2322: Type '"local_override"' is not assignable to type 'WordSource | undefined'.
+src/screens/WordsManagerScreen.tsx(110,21): error TS2322: Type '"local_override"' is not assignable to type 'WordSource | undefined'.

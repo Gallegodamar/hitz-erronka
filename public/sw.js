@@ -1,13 +1,10 @@
-const CACHE_NAME = 'sinonimoak-v12';
-const APP_SHELL = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-];
+const CACHE_NAME = 'sinonimoak-v13';
+const APP_SHELL = ['/', '/index.html', '/manifest.json', '/sw.js'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
+    caches
+      .open(CACHE_NAME)
       .then((cache) => cache.addAll(APP_SHELL))
       .then(() => self.skipWaiting())
   );
@@ -15,13 +12,14 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys()
+    caches
+      .keys()
       .then((keys) => Promise.all(keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))))
       .then(() => self.clients.claim())
   );
 });
 
-const STATIC_DESTINATIONS = new Set(['style', 'script', 'worker', 'font', 'image']);
+const STATIC_DESTINATIONS = new Set(['document', 'style', 'script', 'worker', 'font', 'image']);
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
@@ -45,9 +43,7 @@ self.addEventListener('fetch', (event) => {
   if (STATIC_DESTINATIONS.has(event.request.destination)) {
     event.respondWith(
       caches.match(event.request).then((cachedResponse) => {
-        if (cachedResponse) return cachedResponse;
-
-        return fetch(event.request)
+        const networkFetch = fetch(event.request)
           .then((response) => {
             if (response.ok) {
               const responseClone = response.clone();
@@ -55,7 +51,9 @@ self.addEventListener('fetch', (event) => {
             }
             return response;
           })
-          .catch(() => Response.error());
+          .catch(() => cachedResponse || Response.error());
+
+        return cachedResponse || networkFetch;
       })
     );
     return;

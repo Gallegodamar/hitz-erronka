@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* Light color palette */
+  --color-bg: #f5faff;               /* Very light blue background */
+  --color-card: rgba(255,255,255,0.9);
+  --color-primary: #4d3df7;          /* Indigo accent */
+  --color-success: #10b981;          /* Emerald */
+  --color-error: #ef4444;            /* Rose */
+  --color-text: #1e293b;            /* Dark slate */
+  --color-muted: #64748b;           /* Slate */
+  --font-family: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* Global card style */
+.app-card {
+  background: var(--color-card);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  backdrop-filter: blur(8px);
+}
+
+/* Large, consistent button */
+.app-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4rem; /* larger */
+  padding: 0.75rem 1.5rem;
+  font-size: 1.125rem; /* 18px */
+  font-weight: 800;
+  text-transform: uppercase;
+  border-radius: 1rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.2s;
+  font-family: var(--font-family);
+}
+
+.app-button:hover { transform: scale(1.02); }
+.app-button:active { transform: scale(0.98); }
+
+.app-button-primary { background: var(--color-primary); color: white; }
+.app-button-primary:hover { background: #5b4ff9; }
+
+.app-button-success { background: var(--color-success); color: white; }
+.app-button-error { background: var(--color-error); color: white; }
+
+/* Text utilities */
+.text-muted { color: var(--color-muted); }
+.text-primary { color: var(--color-primary); }
+.text-success { color: var(--color-success); }
+.text-error { color: var(--color-error); }
