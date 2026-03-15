@@ -901,7 +901,7 @@ const App: React.FC = () => {
                   <tr>
                     <th className="px-4 py-3 text-xs font-black text-slate-500 uppercase">P.</th>
                     <th className="px-4 py-3 text-xs font-black text-slate-500 uppercase">Jokalaria</th>
-                    <th className="px-4 py-3 text-xs font-black text-slate-500 uppercase text-center">Pts</th>
+                    <th className="px-4 py-3 text-xs font-black text-slate-500 uppercase text-center">Puntu</th>
                     <th className="px-4 py-3 text-xs font-black text-slate-500 uppercase text-right">Denb.</th>
                   </tr>
                 </thead>
