@@ -75,7 +75,7 @@ export const ReviewScreen = () => {
                                     </div>
                                     <div className="flex flex-wrap gap-2 text-[10px] font-black uppercase">
                                         <span className="rounded-full bg-white px-2 py-1 text-slate-500 border border-slate-100">
-                                            {item.attempts} saiakera
+                                            {item.attempts} saialdi
                                         </span>
                                         <span className="rounded-full bg-white px-2 py-1 text-[#ef4444] border border-rose-100">
                                             {item.incorrect} huts
